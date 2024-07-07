@@ -2,7 +2,7 @@ import axsio from "axios";
 import { toast } from "react-toastify";
 
 const axiosApiInstance = axsio.create({
-  baseURL: "https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/clayawfwp14ev01ukh88s2hit/master",
+  baseURL: "https://fakestoreapi.com",
 });
 
 axiosApiInstance.interceptors.response.use(

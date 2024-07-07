@@ -3,7 +3,7 @@ import * as models from "../../models/products";
 
 const initialState: models.IProductsInitialState = {
   products: [],
-  isLoading: true,
+  isLoading: false,
   totalProducts: 0,
   lastFetch: 0,
   error: "",
@@ -25,10 +25,6 @@ const productsSlice = createSlice({
     FETCH_DATA_FAILED: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
-    },
-
-    IS_LOADING: (state, action) => {
-      state.isLoading = action.payload;
     },
   },
 });

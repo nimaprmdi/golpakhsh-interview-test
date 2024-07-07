@@ -12,6 +12,4 @@ const fetchProducts = () => (dispatch: Dispatch, getState: () => RootState) => {
   apiService.fetchProducts();
 };
 
-const isLoading = (state: "loading" | "loaded") => async (dispatch: Dispatch) => {};
-
 export { fetchProducts };
