@@ -2,6 +2,9 @@ import { Route, createRoutesFromElements, RouterProvider, createBrowserRouter } 
 import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "./store/products/productsActions";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +15,14 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  // @todo check type here
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts() as any);
+  }, []);
+
   return <RouterProvider router={router} />;
 }
 

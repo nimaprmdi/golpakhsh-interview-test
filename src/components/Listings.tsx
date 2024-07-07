@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { FaDollarSign, FaMapMarker, FaTags } from "react-icons/fa";
+import { FaTags } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Listings = ({ item }: { item: any }) => {
   const [showFullDesc, setShowFullDesc] = useState(false);
-
-  console.log(showFullDesc, setShowFullDesc);
 
   let description = item.description;
   if (!showFullDesc) {
@@ -18,8 +16,12 @@ const Listings = ({ item }: { item: any }) => {
     <div className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">
         <div className="mb-6">
-          <div className="text-gray-600 my-2">{item.type}</div>
+          <div className="rounded-lg w-100 flex justify-center mb-4  py-4 border border-slate-400">
+            <img className="w-1/2 h-56 object-contain" src={item.image} alt={item.title} />
+          </div>
+
           <h3 className="text-xl font-bold">{item.title}</h3>
+          <div className="text-gray-600 my-2">{item.category}</div>
         </div>
 
         <div className="mb-5">{description}</div>
