@@ -4,10 +4,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Roboto", "sans-serif"],
+        sans: ["Montserrat", "sans-serif"],
       },
-      gridTemplateColumns: {
-        "70/30": "70% 28%",
+      // gridTemplateColumns: {
+      //   "70/30": "70% 28%",
+      // },
+      colors: {
+        primary: "#5A6D57",
+        "primary-dark": "#404E3E",
+        "primary-light": "#D1D9CF",
       },
     },
   },

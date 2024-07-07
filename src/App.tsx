@@ -3,8 +3,9 @@ import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./store/products/productsActions";
+import { RootState } from "./store/rootReducer";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,12 +16,13 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  // @todo check type here
-
   const dispatch = useDispatch();
+  const productsState = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
-    dispatch(fetchProducts() as any);
+    if (!productsState.isLoading) {
+      dispatch(fetchProducts() as any);
+    }
   }, []);
 
   return <RouterProvider router={router} />;
