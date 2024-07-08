@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white">
-      <div className="w-100 h-8 bg-primary flex justify-center">
+      <div className="w-full h-8 bg-primary flex justify-center">
         <span className="text-xs font-semibold text-white leading-3 flex items-center">
           Enjoy Free Shipping On All Orders
         </span>
@@ -27,10 +27,10 @@ const Navbar = () => {
                 <NavLink to="/" className={(isActive) => linkClasss(isActive)}>
                   <FaSearch className="text-black" />
                 </NavLink>
-                <NavLink to="/items" className={(isActive) => linkClasss(isActive)}>
+                <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
                   <FaUserAlt />
                 </NavLink>
-                <NavLink to="/add-item" className={(isActive) => linkClasss(isActive)}>
+                <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
                   <FaShoppingBag />
                 </NavLink>
               </div>

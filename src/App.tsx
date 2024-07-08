@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./store/products/productsActions";
 import { RootState } from "./store/rootReducer";
 import "./App.css";
+import ShopPage from "./pages/ShopPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<HomePage />} />
+      <Route path="/shop" element={<ShopPage />} />
     </Route>
   )
 );

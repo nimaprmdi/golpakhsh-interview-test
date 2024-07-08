@@ -16,7 +16,7 @@ const Listings = ({ item }: { item: any }) => {
     <div className="bg-white rounded-xl shadow-md relative">
       <div className="p-4">
         <div className="mb-6">
-          <div className="rounded-lg w-100 flex justify-center mb-4  py-4 border border-slate-400">
+          <div className="rounded-lg w-full flex justify-center mb-4  py-4 border border-slate-400">
             <img className="w-1/2 h-56 object-contain" src={item.image} alt={item.title} />
           </div>
 

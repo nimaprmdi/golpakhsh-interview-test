@@ -4,7 +4,11 @@
 
 /* buttons */
 .btn-primary {
-  @apply px-2 md:px-16 bg-white text-black py-2 hover:bg-primary-light transition-all;
+  @apply px-2 md:px-6 bg-white text-black py-2 hover:bg-primary-light transition-all text-sm;
+}
+
+.btn-dark {
+  @apply px-2 md:px-6 bg-primary text-white py-2 hover:bg-primary-light transition-all text-sm;
 }
 
 /* Custom Fonts  */

@@ -28,7 +28,7 @@ const ItemListings = ({ isHome = false }: { isHome: boolean }) => {
         </h2>
 
         {loading ? (
-          <div className="w-100 flex justify-center items-center">loading...</div>
+          <div className="w-full flex justify-center items-center">loading...</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {items && items.map((item: any) => item && <Listings key={item.id} item={item} />)}{" "}
