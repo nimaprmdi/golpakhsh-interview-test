@@ -1,11 +1,11 @@
-import { Route, createRoutesFromElements, RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
+import { Route, createRoutesFromElements, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./store/products/productsActions";
 import { RootState } from "./store/rootReducer";
+import "./App.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

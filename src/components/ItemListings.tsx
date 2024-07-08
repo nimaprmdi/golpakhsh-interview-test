@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Listings from "./Listings";
-import api from "../services/httpServices";
+// import api from "../services/httpServices";
 
 const ItemListings = ({ isHome = false }: { isHome: boolean }) => {
   const [items, setItems] = useState<{}[]>([]);
@@ -8,14 +8,14 @@ const ItemListings = ({ isHome = false }: { isHome: boolean }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await api
-        .get(`${process.env.REACT_APP_MAIN_API}/products`)
-        .then((res) => {
-          setItems(res.data);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      // await api
+      //   .get(`${process.env.REACT_APP_MAIN_API}/products`)
+      //   .then((res) => {
+      //     setItems(res.data);
+      //   })
+      //   .finally(() => {
+      //     setLoading(false);
+      //   });
     };
     fetchData();
   }, []);
