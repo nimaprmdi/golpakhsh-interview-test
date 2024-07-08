@@ -12,13 +12,16 @@ const FilterItem = ({ text, handleInputChange }: FilterItemProps) => {
         <input
           onChange={handleInputChange}
           name={createSlug(text)}
+          id={createSlug(text)}
           type="checkbox"
           className="checkbox opacity-0 absolute cursor-pointer w-full h-full"
         />
         <div className="check-icon hidden  text-white w-full h-full bg-green-800"></div>
       </div>
 
-      <p className="text-base font-normal ms-2">{text}</p>
+      <label htmlFor={createSlug(text)} className="text-base font-normal ms-2">
+        {text}
+      </label>
     </div>
   );
 };
