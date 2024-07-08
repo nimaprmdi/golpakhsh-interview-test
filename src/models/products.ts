@@ -5,6 +5,7 @@ interface IProduct {
   description: string;
   category: string;
   image: string;
+
   rating: {
     rate: number;
     count: number;
@@ -13,6 +14,8 @@ interface IProduct {
 
 interface IProductsInitialState {
   products: IProduct[];
+  categories: string[] | [];
+  searchedProducts: string;
   isLoading: boolean;
   totalProducts: number;
   lastFetch: number;

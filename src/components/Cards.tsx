@@ -9,42 +9,59 @@ interface CardsProps {
   catType: "best-seller" | string;
   className?: string;
   title: string;
+  hasHeader?: boolean;
+  isLimited?: boolean;
 }
 
-const Cards = ({ title, catType, className }: CardsProps) => {
+const Cards = ({ title, catType, className, hasHeader = true, isLimited = true }: CardsProps) => {
   const [items, setItems] = useState<IProduct[]>([]);
-  const { products } = useSelector((state: RootState) => state.products);
+  const { products, searchedProducts } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
     if (products.length > 0) {
       let result = [];
+      let productsClone = [...products];
 
-      if (catType === "best-seller") {
-        result = [...products].sort((a, b) => b.rating.rate - a.rating.rate);
-        setItems(result);
-      } else if (catType) {
-        result = [...products].filter((item) => item.category === catType);
-        setItems(result);
+      // Searched Items
+      if (searchedProducts) {
+        productsClone = products.filter((item) => item.title.toLowerCase().includes(searchedProducts));
       } else {
-        result = [...products];
+        productsClone = [...products];
       }
 
-      setItems(result.slice(0, 3));
+      // Render Based
+      if (catType === "best-seller") {
+        result = productsClone.sort((a, b) => b.rating.rate - a.rating.rate);
+        setItems(result);
+      } else if (catType) {
+        result = productsClone.filter((item) => item.category === catType);
+        setItems(result);
+      } else {
+        result = productsClone;
+      }
+
+      setItems(isLimited ? result.slice(0, 3) : result);
     }
-  }, [products]);
+  }, [products, searchedProducts]);
 
   return (
-    <section className={`py-4 w-100 flex flex-wrap justify-center ${className}`}>
-      <div className="max-w-1440 flex justify-center w-100">
-        <div className="container-xl lg:container m-auto w-100 ">
-          <div className="w-100 flex justify-between items-center mb-6">
-            <h4 className="font-semibold text-3xl">{title}</h4>
+    <section className={`w-full flex flex-wrap justify-center ${className || "py-4"}`}>
+      <div className="max-w-1224 flex justify-center  w-full">
+        <div className="container-xl lg:container m-auto w-full ">
+          {/* Has Header? */}
+          {hasHeader ? (
+            <div className="w-full flex justify-between items-center mb-6">
+              <h4 className="font-semibold text-3xl">{title}</h4>
 
-            <Link to="/items" className="text-sm text-black font-normal hover:text-gray-800">
-              view all
-            </Link>
-          </div>
-          <div className="w-100  flex justify-center xl:justify-between flex-wrap gap-6">
+              <Link to="/items" className="text-sm text-black font-normal hover:text-gray-800">
+                view all
+              </Link>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          <div className="w-full  flex justify-center xl:justify-between flex-wrap gap-6">
             {items.map(
               (item: IProduct, index: number) =>
                 items && items.length > 0 && <Card key={`${item.id}--${Math.random() * 1000 * index}`} item={item} />

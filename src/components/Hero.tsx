@@ -1,6 +1,6 @@
 import hero from "../assets/images/hero.png";
 
-interface IHeroProps {
+interface HeroProps {
   title?: string;
   subTitle?: string;
   buttonText?: string;
@@ -10,7 +10,7 @@ const Hero = ({
   title = "Elegance in simplicity,",
   subTitle = "Earth’s harmony",
   buttonText = "New In",
-}: IHeroProps) => {
+}: HeroProps) => {
   return (
     <section
       style={{
@@ -20,7 +20,7 @@ const Hero = ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
-      className="w-100 mb-4 w-100 bg-slate-900"
+      className="w-full mb-4 bg-slate-900"
     >
       <div className="flex items-end h-full w-full">
         <div className="h-max text-left  mb-6 md:mb-24 ms-5 md:ms-24">

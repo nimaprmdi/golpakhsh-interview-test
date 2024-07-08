@@ -3,7 +3,7 @@ import Cards from "../components/Cards";
 import Cta from "../components/Cta";
 import Masonry from "../components/Masonry";
 
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
   return (
     <>
       <Hero />
