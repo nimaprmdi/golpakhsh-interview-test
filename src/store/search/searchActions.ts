@@ -1,0 +1,2 @@
+const initMethod = () => {};
+export { initMethod };

@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import { Route, createRoutesFromElements, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "./store/products/productsActions";
+import { fetchCategories, fetchProducts } from "./store/products/productsActions";
 import { RootState } from "./store/rootReducer";
 import "./App.css";
 import ShopPage from "./pages/ShopPage";
@@ -24,6 +24,7 @@ function App() {
   useEffect(() => {
     if (!productsState.isLoading) {
       dispatch(fetchProducts() as any);
+      dispatch(fetchCategories() as any);
     }
   }, []);
 

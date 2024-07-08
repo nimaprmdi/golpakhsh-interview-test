@@ -4,10 +4,16 @@ import FilterItem from "./filter/FilterItem";
 
 interface DropdownProps {
   className?: string;
+  data: string[];
 }
 
-const Dropdown = ({ className }: DropdownProps) => {
+const Dropdown = ({ className, data }: DropdownProps) => {
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log([{ [event.target.name]: event.target.checked }]);
+  };
+
   return (
     <div className={className || "text-black"}>
       <div
@@ -39,21 +45,13 @@ const Dropdown = ({ className }: DropdownProps) => {
               {/* checkbox */}
               <div className="pl-4 flex items-center">
                 <ul>
-                  <li>
-                    <FilterItem />
-                  </li>
-                  <li>
-                    <FilterItem />
-                  </li>
-                  <li>
-                    <FilterItem />
-                  </li>
-                  <li>
-                    <FilterItem />
-                  </li>
-                  <li>
-                    <FilterItem />
-                  </li>
+                  {data &&
+                    data.length > 0 &&
+                    data.map((item: string, index: number) => (
+                      <li key={`${item.toLowerCase().replace(/ +/g, "-")}--${Math.random() * 1000 * index}`}>
+                        <FilterItem text={item} handleInputChange={handleInputChange} />
+                      </li>
+                    ))}
                 </ul>
               </div>
             </div>

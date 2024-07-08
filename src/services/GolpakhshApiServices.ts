@@ -22,6 +22,23 @@ class GolpakhshApiServices {
         console.log(error);
       });
   };
+
+  readonly fetchCategories = async () => {
+    store.dispatch(productsActions.FETCH_DATA());
+
+    return await http
+      .get("/products/categories")
+      .then((response) => {
+        const res = response.data;
+
+        toast.success("Request Published Successfuly");
+        store.dispatch(productsActions.FETCH_CATEGORIES_SUCCESSFUL(res));
+      })
+      .catch((error) => {
+        toast.error("Publish Request Failed");
+        console.log(error);
+      });
+  };
 }
 
 export default new GolpakhshApiServices();

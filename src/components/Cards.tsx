@@ -10,29 +10,39 @@ interface CardsProps {
   className?: string;
   title: string;
   hasHeader?: boolean;
+  isLimited?: boolean;
 }
 
-const Cards = ({ title, catType, className, hasHeader = true }: CardsProps) => {
+const Cards = ({ title, catType, className, hasHeader = true, isLimited = true }: CardsProps) => {
   const [items, setItems] = useState<IProduct[]>([]);
-  const { products } = useSelector((state: RootState) => state.products);
+  const { products, searchedProducts } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
     if (products.length > 0) {
       let result = [];
+      let productsClone = [...products];
 
-      if (catType === "best-seller") {
-        result = [...products].sort((a, b) => b.rating.rate - a.rating.rate);
-        setItems(result);
-      } else if (catType) {
-        result = [...products].filter((item) => item.category === catType);
-        setItems(result);
+      // Searched Items
+      if (searchedProducts) {
+        productsClone = products.filter((item) => item.title.toLowerCase().includes(searchedProducts));
       } else {
-        result = [...products];
+        productsClone = [...products];
       }
 
-      setItems(result.slice(0, 3));
+      // Render Based
+      if (catType === "best-seller") {
+        result = productsClone.sort((a, b) => b.rating.rate - a.rating.rate);
+        setItems(result);
+      } else if (catType) {
+        result = productsClone.filter((item) => item.category === catType);
+        setItems(result);
+      } else {
+        result = productsClone;
+      }
+
+      setItems(isLimited ? result.slice(0, 3) : result);
     }
-  }, [products]);
+  }, [products, searchedProducts]);
 
   return (
     <section className={`w-full flex flex-wrap justify-center ${className || "py-4"}`}>
