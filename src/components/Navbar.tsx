@@ -4,7 +4,7 @@ import { FaSearch, FaShoppingBag, FaUserAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const linkClasss = ({ isActive }: { isActive: boolean }) =>
-    isActive ? "hover:text-white rounded-md px-3 py-2" : "hover:bg-gray-900 hover:text-primary rounded-md px-3 py-2";
+    isActive ? "hover:text-primary rounded-md px-3 py-2" : "hover:text-primary rounded-md px-3 py-2";
 
   return (
     <nav className="bg-white">
