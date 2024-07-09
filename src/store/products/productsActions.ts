@@ -1,8 +1,9 @@
 import moment from "moment";
 import apiService from "../../services/GolpakhshApiServices";
+import * as actions from "./productsReducers";
 import { RootState } from "../rootReducer";
 import { Dispatch } from "@reduxjs/toolkit";
-import * as actions from "./productsReducers";
+import { IProduct } from "../../models/products";
 
 const fetchProducts = () => (dispatch: Dispatch, getState: () => RootState) => {
   const { lastFetch } = getState().products;
@@ -22,8 +23,9 @@ const fetchCategories = () => (dispatch: Dispatch, getState: () => RootState) =>
   apiService.fetchCategories();
 };
 
-const searchProduct = (text: string) => (dispatch: Dispatch, getState: () => RootState) => {
-  dispatch(actions.SEARCHED_PRODUCTS(text));
+const searchProduct = (products: IProduct[], key: string) => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.SEARCH_PRODUCT_LIST(products));
+  dispatch(actions.SEARCH_KEY(key));
 };
 
 export { fetchProducts, fetchCategories, searchProduct };

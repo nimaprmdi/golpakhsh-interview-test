@@ -1,37 +1,54 @@
 import Cards from "../components/Cards";
 import Badge from "../components/shop/Badge";
 import FilterSubmition from "../components/filter/FilterSubmition";
-import Input from "../components/common/Input";
+import SearchInput from "../components/common/SearchInput";
 import Dropdown from "../components/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { IProduct } from "../models/products";
 import { searchProduct } from "../store/products/productsActions";
+import { useSearchParams } from "react-router-dom";
 
 const ShopPage = (): JSX.Element => {
-  const { categories, products } = useSelector((state: RootState) => state.products);
-  const [items, setItems] = useState<IProduct[]>([]);
+  const { categories, products, searchedProducts, searchedKey } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch();
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const handleSerachChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const res = items.filter((item) => item.title.toLowerCase() === event.target.value);
-    setItems(res);
-    dispatch(searchProduct(event.target.value) as any);
+    const productsClone = [...products];
+    const res = productsClone.filter((products: IProduct) =>
+      products.title.toLowerCase().includes(event.target.value.toLocaleLowerCase())
+    );
+
+    dispatch(searchProduct(res, event.target.value) as any);
   };
 
-  useEffect(() => {
-    products && setItems(products);
-  }, [products]);
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    const currentParams = Object.fromEntries(searchParams.entries());
 
-  useEffect(() => {}, [categories]);
+    const res = currentParams.category !== name ? [currentParams.category, name] : "";
+    console.log(res);
+
+    if (checked) {
+      setSearchParams({ ...currentParams, category: res });
+    } else {
+      const { [name]: removed, ...rest } = currentParams;
+      setSearchParams(rest);
+    }
+  };
+
+  useEffect(() => {}, [categories, products]);
 
   return (
     <section className="w-full flex justify-center">
       <div className="max-w-1224 w-full text-center">
-        <Input onChange={handleSerachChange} />
+        <SearchInput onChange={handleSerachChange} />
 
-        <h6 className="text-center text-xl py-10">{products.length} Items</h6>
+        <h6 className="text-center text-xl py-10">
+          {searchedProducts && searchedKey ? searchedProducts.length : products.length} Items
+        </h6>
 
         {/* Shop Container */}
         <section className="w-full flex flex-wrap">
@@ -47,7 +64,7 @@ const ShopPage = (): JSX.Element => {
             <FilterSubmition />
 
             <div className="w-full">
-              <Dropdown data={categories} />
+              <Dropdown data={categories} onChange={handleCheckboxChange} />
               {/*<Dropdown className="mt-4" />*/}
             </div>
           </div>

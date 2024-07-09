@@ -21,7 +21,7 @@ const Card = ({ item }: CardProps) => {
       />
 
       <div className="w-full flex justify-between mt-2 items-center">
-        <h5 className="text-base text-black font-bold">{item.title.substr(0, 20) + "...."}</h5>
+        <h5 className="text-base text-black font-bold">{item.title.substring(0, 20) + "...."}</h5>
         <h5 className="text-base text-black font-bold">${item.price}</h5>
       </div>
     </div>

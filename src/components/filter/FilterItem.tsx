@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import { createSlug } from "../../helpers/utils";
 
 interface FilterItemProps {
@@ -6,6 +7,8 @@ interface FilterItemProps {
 }
 
 const FilterItem = ({ text, handleInputChange }: FilterItemProps) => {
+  const [searchParams] = useSearchParams();
+
   return (
     <div className="flex items-center mb-2">
       <div className="bg-gray-100  border border-primary-light w-3 h-3 flex flex-shrink-0 justify-center items-center relative">
@@ -13,6 +16,7 @@ const FilterItem = ({ text, handleInputChange }: FilterItemProps) => {
           onChange={handleInputChange}
           name={createSlug(text)}
           id={createSlug(text)}
+          checked={searchParams.get("category") === createSlug(text)}
           type="checkbox"
           className="checkbox opacity-0 absolute cursor-pointer w-full h-full"
         />

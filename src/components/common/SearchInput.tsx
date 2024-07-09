@@ -4,7 +4,7 @@ interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ onChange }: InputProps) => {
+const SearchInput = ({ onChange }: InputProps) => {
   return (
     <form>
       <label htmlFor="search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
@@ -44,4 +44,4 @@ const Input = ({ onChange }: InputProps) => {
   );
 };
 
-export default Input;
+export default SearchInput;

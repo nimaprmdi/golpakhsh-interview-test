@@ -15,19 +15,12 @@ interface CardsProps {
 
 const Cards = ({ title, catType, className, hasHeader = true, isLimited = true }: CardsProps) => {
   const [items, setItems] = useState<IProduct[]>([]);
-  const { products, searchedProducts } = useSelector((state: RootState) => state.products);
+  const { products, searchedProducts, searchedKey } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
     if (products.length > 0) {
       let result = [];
-      let productsClone = [...products];
-
-      // Searched Items
-      if (searchedProducts) {
-        productsClone = products.filter((item) => item.title.toLowerCase().includes(searchedProducts));
-      } else {
-        productsClone = [...products];
-      }
+      let productsClone = searchedProducts && searchedKey ? [...searchedProducts] : [...products];
 
       // Render Based
       if (catType === "best-seller") {
@@ -48,13 +41,13 @@ const Cards = ({ title, catType, className, hasHeader = true, isLimited = true }
     <section className={`w-full flex flex-wrap justify-center ${className || "py-4"}`}>
       <div className="max-w-1224 flex justify-center  w-full">
         <div className="container-xl lg:container m-auto w-full ">
-          {/* Has Header? */}
+          {/* Has Header */}
           {hasHeader ? (
             <div className="w-full flex justify-between items-center mb-6">
               <h4 className="font-semibold text-3xl">{title}</h4>
 
               <Link to="/items" className="text-sm text-black font-normal hover:text-gray-800">
-                view all
+                View all
               </Link>
             </div>
           ) : (

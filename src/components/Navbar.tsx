@@ -2,17 +2,26 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/images/Logo.svg";
 import { FaSearch, FaShoppingBag, FaUserAlt } from "react-icons/fa";
 
-const Navbar = () => {
+interface NavbarProps {
+  isPrimary?: boolean;
+}
+
+const Navbar = ({ isPrimary = true }: NavbarProps) => {
   const linkClasss = ({ isActive }: { isActive: boolean }) =>
     isActive ? "hover:text-primary rounded-md px-3 py-2" : "hover:text-primary rounded-md px-3 py-2";
 
   return (
     <nav className="bg-white">
-      <div className="w-full h-8 bg-primary flex justify-center">
-        <span className="text-xs font-semibold text-white leading-3 flex items-center">
-          Enjoy Free Shipping On All Orders
-        </span>
-      </div>
+      {isPrimary ? (
+        <div className="w-full h-8 bg-primary flex justify-center">
+          <span className="text-xs font-semibold text-white leading-3 flex items-center">
+            Enjoy Free Shipping On All Orders
+          </span>
+        </div>
+      ) : (
+        <></>
+      )}
+
       {/* Menu */}
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
@@ -22,19 +31,23 @@ const Navbar = () => {
               <img src={logo} alt="modimal" />
             </NavLink>
 
-            <div className="md:ml-auto">
-              <div className="flex space-x-2 h-full items-center">
-                <NavLink to="/" className={(isActive) => linkClasss(isActive)}>
-                  <FaSearch className="text-black" />
-                </NavLink>
-                <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
-                  <FaUserAlt />
-                </NavLink>
-                <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
-                  <FaShoppingBag />
-                </NavLink>
+            {isPrimary ? (
+              <div className="md:ml-auto">
+                <div className="flex space-x-2 h-full items-center">
+                  <NavLink to="/" className={(isActive) => linkClasss(isActive)}>
+                    <FaSearch className="text-black" />
+                  </NavLink>
+                  <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
+                    <FaUserAlt />
+                  </NavLink>
+                  <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
+                    <FaShoppingBag />
+                  </NavLink>
+                </div>
               </div>
-            </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

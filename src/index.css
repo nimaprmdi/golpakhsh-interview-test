@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* inputs */
+.form-input {
+  @apply border outline-none border-gray-500 text-black p-2;
+}
+
 /* buttons */
 .btn-primary {
   @apply px-2 md:px-6 bg-white text-black py-2 hover:bg-primary-light transition-all text-sm;

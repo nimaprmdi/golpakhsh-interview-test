@@ -15,7 +15,8 @@ interface IProduct {
 interface IProductsInitialState {
   products: IProduct[];
   categories: string[] | [];
-  searchedProducts: string;
+  searchedProducts: IProduct[];
+  searchedKey: string;
   isLoading: boolean;
   totalProducts: number;
   lastFetch: number;
