@@ -28,4 +28,8 @@ const searchProduct = (products: IProduct[], key: string) => (dispatch: Dispatch
   dispatch(actions.SEARCH_KEY(key));
 };
 
-export { fetchProducts, fetchCategories, searchProduct };
+const updateSearchedCategories = (categories: string[]) => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.UPDATE_SEARCHED_CATEGORIES(categories));
+};
+
+export { fetchProducts, fetchCategories, searchProduct, updateSearchedCategories };

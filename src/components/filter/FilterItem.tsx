@@ -1,5 +1,6 @@
-import { useSearchParams } from "react-router-dom";
 import { createSlug } from "../../helpers/utils";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/rootReducer";
 
 interface FilterItemProps {
   text: string;
@@ -7,7 +8,8 @@ interface FilterItemProps {
 }
 
 const FilterItem = ({ text, handleInputChange }: FilterItemProps) => {
-  const [searchParams] = useSearchParams();
+  const { searchedCategories } = useSelector((state: RootState) => state.products);
+  const foundResult = searchedCategories.findIndex((item) => item === createSlug(text));
 
   return (
     <div className="flex items-center mb-2">
@@ -16,7 +18,7 @@ const FilterItem = ({ text, handleInputChange }: FilterItemProps) => {
           onChange={handleInputChange}
           name={createSlug(text)}
           id={createSlug(text)}
-          checked={searchParams.get("category") === createSlug(text)}
+          checked={foundResult !== -1}
           type="checkbox"
           className="checkbox opacity-0 absolute cursor-pointer w-full h-full"
         />

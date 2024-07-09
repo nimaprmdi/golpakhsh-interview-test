@@ -16,6 +16,7 @@ interface IProductsInitialState {
   products: IProduct[];
   categories: string[] | [];
   searchedProducts: IProduct[];
+  searchedCategories: string[];
   searchedKey: string;
   isLoading: boolean;
   totalProducts: number;

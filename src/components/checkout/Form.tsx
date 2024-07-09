@@ -4,7 +4,7 @@ import InputElement from "../common/InputElement";
 
 const Form = () => {
   return (
-    <div className="w-full flex flex-wrap mb-12 ps-5">
+    <div className="w-full flex flex-wrap mb-12">
       {/* Contact Us */}
       <div className="w-full flex justify-between flex-wrap mb-8">
         <h4 className="text-lg font-normal">Contact</h4>

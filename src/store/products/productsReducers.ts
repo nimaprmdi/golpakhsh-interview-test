@@ -8,6 +8,7 @@ const initialState: models.IProductsInitialState = {
   totalProducts: 0,
   lastFetch: 0,
   searchedProducts: [],
+  searchedCategories: [],
   searchedKey: "",
   error: "",
 };
@@ -42,6 +43,10 @@ const productsSlice = createSlice({
     SEARCH_KEY: (state, action) => {
       state.searchedKey = action.payload;
     },
+
+    UPDATE_SEARCHED_CATEGORIES: (state, action) => {
+      state.searchedCategories = action.payload;
+    },
   },
 });
 
@@ -52,5 +57,6 @@ export const {
   FETCH_DATA_FAILED,
   SEARCH_PRODUCT_LIST,
   SEARCH_KEY,
+  UPDATE_SEARCHED_CATEGORIES,
 } = productsSlice.actions;
 export default productsSlice.reducer;

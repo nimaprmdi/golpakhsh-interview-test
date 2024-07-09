@@ -1,7 +1,8 @@
-import Form from "../components/checkout/Form";
+import React from "react";
 import CartItems from "../components/checkout/CartItems";
+import Shipping from "../components/shipping/Shipping";
 
-const CheckoutPage = () => {
+const ShippingPage = () => {
   return (
     <div className="w-full flex justify-center mt-20">
       <div className="max-w-1224 w-full flex flex-wrap justify-between">
@@ -10,11 +11,11 @@ const CheckoutPage = () => {
         </div>
 
         <div className="w-full lg:w-7/12 px-3 lg:px-0 lg:ps-5 order-2 lg:order-1 mt-8 lg:mt-0">
-          <Form />
+          <Shipping />
         </div>
       </div>
     </div>
   );
 };
 
-export default CheckoutPage;
+export default ShippingPage;

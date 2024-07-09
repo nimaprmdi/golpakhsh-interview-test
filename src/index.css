@@ -2,24 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-/* inputs */
-.form-input {
-  @apply border outline-none border-gray-500 text-black p-2;
-}
-
-/* buttons */
-.btn-primary {
-  @apply px-2 md:px-6 bg-white text-black py-2 hover:bg-primary-light transition-all text-sm;
-}
-
-.btn-dark {
-  @apply px-2 md:px-6 bg-primary text-white py-2 hover:bg-primary-light transition-all text-sm;
-}
-
 /* Custom Fonts  */
 @font-face {
   font-family: "gillsansmt";
   src: url("./assets/fonts/gillsansmt.woff2") format("woff2"), url("./assets/fonts/gillsansmt.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+/* inputs */
+.form-input {
+  @apply border outline-none border-gray-500 text-black p-2;
+}
+
+.form-input--secondary {
+  @apply bg-transparent text-white;
+}
+
+/* radio buttons*/
+input[type="radio"] {
+  /* Hide original inputs */
+  visibility: hidden;
+  position: absolute;
+}
+
+input[type="radio"] + label:before {
+  height: 12px;
+  width: 12px;
+  margin-right: 2px;
+  content: " ";
+  display: inline-block;
+  vertical-align: baseline;
+  border: 1px solid #777;
+}
+
+input[type="radio"]:checked + label:before {
+  @apply border-primary bg-primary;
+}
+
+input[type="radio"] + label:before {
+  border-radius: 50%;
+}
+
+/* buttons */
+.btn-primary {
+  @apply px-2 md:px-6 bg-white text-black py-2 hover:bg-primary-light transition-all text-sm capitalize;
+}
+
+.btn-dark {
+  @apply px-2 md:px-6 bg-primary text-white py-2 hover:bg-primary-light hover:text-black transition-all text-sm capitalize;
+}
+
+/* utils */
+.u-full-height-menu {
+  height: calc(100vh - 112px);
 }

@@ -20,11 +20,11 @@ const Hero = ({
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
-      className="w-full mb-4 bg-slate-900"
+      className="w-full mb-4 bg-slate-900 flex justify-center"
     >
-      <div className="flex items-end h-full w-full">
-        <div className="h-max text-left  mb-6 md:mb-24 ms-5 md:ms-24">
-          <h2 className="text-2xl md:text-4xl italic font-gillsansmt mb-2">{title}</h2>
+      <div className="flex items-end h-full w-full max-w-1224">
+        <div className="h-max text-left mb-6 md:mb-24">
+          <h2 className="text-2xl md:text-4xl italic font-gillsansmt mb-2 text-shadow-lg">{title}</h2>
           <h2 className="text-2xl md:text-4xl italic font-gillsansmt">{subTitle}</h2>
 
           <button className="btn-primary mt-10 md:mt-7">{buttonText}</button>

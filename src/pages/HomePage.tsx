@@ -8,8 +8,8 @@ const HomePage = (): JSX.Element => {
     <>
       <Hero />
       <Cards title="Best Sellers" catType="best-seller" />
-      <Cards title="Best Sellers" catType="best-seller" className="mt-28" />
-      <Cards title="Best Sellers" catType="best-seller" className="mt-28" />
+      <Cards title="Men's Clothing" catType="mens-clothing" className="mt-28" />
+      <Cards title="Women's Clothing" catType="womens-clothing" className="mt-28" />
       <Cta className="mt-28" />
       <Masonry />
     </>

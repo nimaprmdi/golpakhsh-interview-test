@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
 import { useEffect, useState } from "react";
 import { IProduct } from "../models/products";
 import Card from "./Card";
+import { createSlug } from "../helpers/utils";
 
 interface CardsProps {
   catType: "best-seller" | string;
@@ -11,31 +12,41 @@ interface CardsProps {
   title: string;
   hasHeader?: boolean;
   isLimited?: boolean;
+  setItemsLength?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Cards = ({ title, catType, className, hasHeader = true, isLimited = true }: CardsProps) => {
+const Cards = ({ title, catType, className, hasHeader = true, isLimited = true, setItemsLength }: CardsProps) => {
   const [items, setItems] = useState<IProduct[]>([]);
   const { products, searchedProducts, searchedKey } = useSelector((state: RootState) => state.products);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     if (products.length > 0) {
       let result = [];
       let productsClone = searchedProducts && searchedKey ? [...searchedProducts] : [...products];
 
-      // Render Based
+      // Filter by Category
+      const categoriesString = searchParams.get("category");
+      const categories = categoriesString ? decodeURIComponent(categoriesString).split(",") : [];
+      if (categories.length > 0) {
+        productsClone = productsClone.filter((product) => categories.includes(createSlug(product.category)));
+      }
+
+      // Render Base
       if (catType === "best-seller") {
         result = productsClone.sort((a, b) => b.rating.rate - a.rating.rate);
         setItems(result);
       } else if (catType) {
-        result = productsClone.filter((item) => item.category === catType);
+        result = productsClone.filter((item) => createSlug(item.category) === catType);
         setItems(result);
       } else {
         result = productsClone;
       }
 
+      setItemsLength && setItemsLength(result.length); // Set For Count parent component
       setItems(isLimited ? result.slice(0, 3) : result);
     }
-  }, [products, searchedProducts]);
+  }, [products, searchedProducts, searchParams]);
 
   return (
     <section className={`w-full flex flex-wrap justify-center ${className || "py-4"}`}>
