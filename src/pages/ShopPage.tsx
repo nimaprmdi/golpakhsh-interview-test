@@ -1,53 +1,95 @@
 import Cards from "../components/Cards";
 import Badge from "../components/shop/Badge";
 import FilterSubmition from "../components/filter/FilterSubmition";
-import Input from "../components/common/Input";
+import SearchInput from "../components/common/SearchInput";
 import Dropdown from "../components/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
 import { useEffect, useState } from "react";
 import { IProduct } from "../models/products";
-import { searchProduct } from "../store/products/productsActions";
+import { searchProduct, updateSearchedCategories } from "../store/products/productsActions";
+import { useSearchParams } from "react-router-dom";
 
 const ShopPage = (): JSX.Element => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const [itemsLength, setItemsLength] = useState<number>(0);
   const { categories, products } = useSelector((state: RootState) => state.products);
-  const [items, setItems] = useState<IProduct[]>([]);
   const dispatch = useDispatch();
 
   const handleSerachChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const res = items.filter((item) => item.title.toLowerCase() === event.target.value);
-    setItems(res);
-    dispatch(searchProduct(event.target.value) as any);
+    const productsClone = [...products];
+    const res = productsClone.filter((products: IProduct) =>
+      products.title.toLowerCase().includes(event.target.value.toLocaleLowerCase())
+    );
+
+    dispatch(searchProduct(res, event.target.value) as any);
   };
 
-  useEffect(() => {
-    products && setItems(products);
-  }, [products]);
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    setSelectedCategory((prevState) => {
+      let newSelectedCategory;
 
-  useEffect(() => {}, [categories]);
+      if (checked && !prevState.includes(name)) {
+        newSelectedCategory = [...prevState, name];
+      } else {
+        newSelectedCategory = prevState.filter((category) => category !== name);
+      }
+
+      dispatch(updateSearchedCategories(newSelectedCategory) as any);
+      return newSelectedCategory;
+    });
+  };
+
+  const handleApplyFilters = () => {
+    if (selectedCategory.length === 0) {
+      searchParams.delete("category");
+      setSearchParams(searchParams);
+    } else {
+      setSearchParams({ category: selectedCategory.toString() });
+    }
+  };
+
+  const handleDeleteFilters = () => {
+    searchParams.delete("category");
+    setSearchParams(searchParams);
+    setSelectedCategory(() => {
+      dispatch(updateSearchedCategories([]) as any);
+      return [];
+    });
+  };
+
+  useEffect(() => {}, [categories, products]);
 
   return (
     <section className="w-full flex justify-center">
       <div className="max-w-1224 w-full text-center">
-        <Input onChange={handleSerachChange} />
+        <SearchInput onChange={handleSerachChange} />
 
-        <h6 className="text-center text-xl py-10">{products.length} Items</h6>
+        <h6 className="text-center text-xl py-10">{itemsLength} Items</h6>
 
         {/* Shop Container */}
         <section className="w-full flex flex-wrap">
           {/* The Filters */}
           <div className="w-4/12 h-full pe-2">
             <h4 className="text-left font-semibold text-3xl text-black mb-4">Filters</h4>
-
             {/* Badges */}
-            <Badge text="Twxt" />
-            <Badge text="Twxt" />
+            <div className="badges flex flex-wrap gap-3">
+              {selectedCategory && selectedCategory.length > 0 ? (
+                selectedCategory.map((category: string, index: number) => (
+                  <Badge key={`${category}--${Math.random() * 65482 * index}`} text={category} />
+                ))
+              ) : (
+                <></>
+              )}
+            </div>
 
             {/* Filter Submition */}
-            <FilterSubmition />
+            <FilterSubmition onClearFilterClick={handleDeleteFilters} onApplyFilterClick={handleApplyFilters} />
 
             <div className="w-full">
-              <Dropdown data={categories} />
+              <Dropdown data={categories} onChange={handleCheckboxChange} />
               {/*<Dropdown className="mt-4" />*/}
             </div>
           </div>
@@ -55,11 +97,13 @@ const ShopPage = (): JSX.Element => {
           {/* The Content */}
           <div className="w-8/12 h-full ps-2">
             <Cards
+              link="/items"
               title="Best Sellers"
               isLimited={false}
               catType="best-seller"
               hasHeader={false}
               className="disable-top"
+              setItemsLength={setItemsLength}
             />
           </div>
         </section>

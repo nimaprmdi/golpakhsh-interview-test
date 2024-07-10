@@ -7,7 +7,9 @@ const initialState: models.IProductsInitialState = {
   isLoading: false,
   totalProducts: 0,
   lastFetch: 0,
-  searchedProducts: "",
+  searchedProducts: [],
+  searchedCategories: [],
+  searchedKey: "",
   error: "",
 };
 
@@ -34,12 +36,32 @@ const productsSlice = createSlice({
       state.isLoading = false;
     },
 
-    SEARCHED_PRODUCTS: (state, action) => {
+    SEARCH_PRODUCT_LIST: (state, action) => {
       state.searchedProducts = action.payload;
+    },
+
+    SEARCH_KEY: (state, action) => {
+      state.searchedKey = action.payload;
+    },
+
+    UPDATE_SEARCHED_CATEGORIES: (state, action) => {
+      state.searchedCategories = action.payload;
+    },
+
+    DELETE_SEARCHED_CATEGORY: (state, action) => {
+      state.searchedCategories = state.searchedCategories.filter((category) => category !== action.payload);
     },
   },
 });
 
-export const { FETCH_DATA, FETCH_DATA_SUCCESSFUL, FETCH_CATEGORIES_SUCCESSFUL, FETCH_DATA_FAILED, SEARCHED_PRODUCTS } =
-  productsSlice.actions;
+export const {
+  FETCH_DATA,
+  FETCH_DATA_SUCCESSFUL,
+  FETCH_CATEGORIES_SUCCESSFUL,
+  FETCH_DATA_FAILED,
+  SEARCH_PRODUCT_LIST,
+  SEARCH_KEY,
+  UPDATE_SEARCHED_CATEGORIES,
+  DELETE_SEARCHED_CATEGORY,
+} = productsSlice.actions;
 export default productsSlice.reducer;

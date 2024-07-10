@@ -5,14 +5,11 @@ import FilterItem from "./filter/FilterItem";
 interface DropdownProps {
   className?: string;
   data: string[];
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Dropdown = ({ className, data }: DropdownProps) => {
+const Dropdown = ({ className, data, onChange }: DropdownProps) => {
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log([{ [event.target.name]: event.target.checked }]);
-  };
 
   return (
     <div className={className || "text-black"}>
@@ -49,7 +46,7 @@ const Dropdown = ({ className, data }: DropdownProps) => {
                     data.length > 0 &&
                     data.map((item: string, index: number) => (
                       <li key={`${item.toLowerCase().replace(/ +/g, "-")}--${Math.random() * 1000 * index}`}>
-                        <FilterItem text={item} handleInputChange={handleInputChange} />
+                        <FilterItem text={item} handleInputChange={(e) => onChange(e)} />
                       </li>
                     ))}
                 </ul>
@@ -59,9 +56,9 @@ const Dropdown = ({ className, data }: DropdownProps) => {
         </div>
       )}
       <style>
-        {` .checkbox:checked + .check-icon {
+        {`.checkbox:checked + .check-icon {
                 display: flex;
-            }`}
+        }`}
       </style>
     </div>
   );

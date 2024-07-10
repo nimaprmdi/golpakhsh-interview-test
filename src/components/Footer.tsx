@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaPinterest, FaTiktok } from "react-icons/fa";
+import InputElement from "./common/InputElement";
 
 const Footer = () => {
   return (
@@ -9,12 +10,14 @@ const Footer = () => {
           {/* Left top */}
           <div className="footer-left-top w-full">
             <h5 className="text-xl font-bold mb-6">Join our club, get 15% off for your Birthday</h5>
-            <input
-              type="text"
+
+            <InputElement
               placeholder="Enter Your Email Address"
-              className="mb-6 w-full"
-              style={{ maxWidth: "490px" }}
+              type="text"
+              name="news-letter"
+              className="mb-6 w-full max-w-lg form-input form-input--secondary"
             />
+
             <div className="flex items-center ">
               <input id="newsletter-check" type="checkbox"></input>
               <label htmlFor="newsletter-check" className="text-xs mb-0 ms-2" style={{ maxWidth: "470px" }}>
