@@ -1,6 +1,6 @@
 import image from "../../assets/images/Order.png";
 import { FaRegTimesCircle } from "react-icons/fa";
-import Number from "../common/Number";
+import NumberElement from "../common/NumberElement";
 
 const CartItem = () => {
   return (
@@ -25,7 +25,7 @@ const CartItem = () => {
           </div>
           <div className="w-full h-full flex items-center justify-center text-center">
             <span>
-              <Number className="absolute right-0 md:static" />
+              <NumberElement className="absolute right-0 md:static" />
             </span>
           </div>
           <div className="w-full h-full  items-center justify-center text-center hidden md:flex">

@@ -5,7 +5,7 @@ interface NumberProps {
   className?: string;
 }
 
-const Number = ({ className }: NumberProps) => {
+const NumberElement = ({ className }: NumberProps) => {
   const [count, setCount] = useState<number>(0);
 
   return (
@@ -45,4 +45,4 @@ const Number = ({ className }: NumberProps) => {
   );
 };
 
-export default Number;
+export default NumberElement;

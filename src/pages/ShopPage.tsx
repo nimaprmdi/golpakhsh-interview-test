@@ -102,6 +102,7 @@ const ShopPage = (): JSX.Element => {
               isLimited={false}
               catType="best-seller"
               hasHeader={false}
+              hasPagination={true}
               className="disable-top"
               setItemsLength={setItemsLength}
             />

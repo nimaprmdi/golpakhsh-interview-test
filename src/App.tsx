@@ -1,5 +1,6 @@
 // Layouts
 import MainLayout from "./layouts/MainLayout";
+import SecondaryLayout from "./layouts/SecondaryLayout";
 
 // Methods
 import { Route, createRoutesFromElements, RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -14,7 +15,7 @@ import ShopPage from "./pages/ShopPage";
 import ShopSinglePage from "./pages/ShopSinglePage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
-import SecondaryLayout from "./layouts/SecondaryLayout";
+
 import ShippingPage from "./pages/ShippingPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import LoginPage from "./pages/LoginPage";
