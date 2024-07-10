@@ -10,12 +10,13 @@ interface CardsProps {
   catType: "best-seller" | string;
   className?: string;
   title: string;
+  link: string;
   hasHeader?: boolean;
   isLimited?: boolean;
   setItemsLength?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Cards = ({ title, catType, className, hasHeader = true, isLimited = true, setItemsLength }: CardsProps) => {
+const Cards = ({ title, link, catType, className, hasHeader = true, isLimited = true, setItemsLength }: CardsProps) => {
   const [items, setItems] = useState<IProduct[]>([]);
   const { products, searchedProducts, searchedKey } = useSelector((state: RootState) => state.products);
   const [searchParams] = useSearchParams();
@@ -57,7 +58,7 @@ const Cards = ({ title, catType, className, hasHeader = true, isLimited = true, 
             <div className="w-full flex justify-between items-center mb-6">
               <h4 className="font-semibold text-3xl">{title}</h4>
 
-              <Link to="/items" className="text-sm text-black font-normal hover:text-gray-800">
+              <Link to={link} className="text-sm text-black font-normal hover:text-gray-800">
                 View all
               </Link>
             </div>

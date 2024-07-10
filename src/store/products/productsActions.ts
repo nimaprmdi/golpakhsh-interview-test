@@ -32,4 +32,8 @@ const updateSearchedCategories = (categories: string[]) => (dispatch: Dispatch, 
   dispatch(actions.UPDATE_SEARCHED_CATEGORIES(categories));
 };
 
-export { fetchProducts, fetchCategories, searchProduct, updateSearchedCategories };
+const deleteCategory = (category: string) => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.DELETE_SEARCHED_CATEGORY(category));
+};
+
+export { fetchProducts, fetchCategories, searchProduct, updateSearchedCategories, deleteCategory };

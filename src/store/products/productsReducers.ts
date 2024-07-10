@@ -47,6 +47,10 @@ const productsSlice = createSlice({
     UPDATE_SEARCHED_CATEGORIES: (state, action) => {
       state.searchedCategories = action.payload;
     },
+
+    DELETE_SEARCHED_CATEGORY: (state, action) => {
+      state.searchedCategories = state.searchedCategories.filter((category) => category !== action.payload);
+    },
   },
 });
 
@@ -58,5 +62,6 @@ export const {
   SEARCH_PRODUCT_LIST,
   SEARCH_KEY,
   UPDATE_SEARCHED_CATEGORIES,
+  DELETE_SEARCHED_CATEGORY,
 } = productsSlice.actions;
 export default productsSlice.reducer;

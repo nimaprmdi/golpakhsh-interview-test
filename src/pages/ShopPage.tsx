@@ -14,7 +14,7 @@ const ShopPage = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   const [itemsLength, setItemsLength] = useState<number>(0);
-  const { categories, products, searchedProducts, searchedKey } = useSelector((state: RootState) => state.products);
+  const { categories, products } = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch();
 
   const handleSerachChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,6 +97,7 @@ const ShopPage = (): JSX.Element => {
           {/* The Content */}
           <div className="w-8/12 h-full ps-2">
             <Cards
+              link="/items"
               title="Best Sellers"
               isLimited={false}
               catType="best-seller"

@@ -34,10 +34,10 @@ const Navbar = ({ isPrimary = true }: NavbarProps) => {
             {isPrimary ? (
               <div className="md:ml-auto">
                 <div className="flex space-x-2 h-full items-center">
-                  <NavLink to="/" className={(isActive) => linkClasss(isActive)}>
+                  <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
                     <FaSearch className="text-black" />
                   </NavLink>
-                  <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
+                  <NavLink to="/login" className={(isActive) => linkClasss(isActive)}>
                     <FaUserAlt />
                   </NavLink>
                   <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
