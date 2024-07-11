@@ -36,7 +36,6 @@ const Cards = ({
   const [paginatedData, setPaginatedData] = useState<IProduct[]>([]);
 
   const itemsPerPage = 4;
-
   const pageCount = Math.ceil(items.length / itemsPerPage);
 
   const nextPage = () => {
@@ -75,6 +74,7 @@ const Cards = ({
         result = productsClone;
       }
 
+      setCurrentPage(1);
       setItemsLength && setItemsLength(result.length); // Set For Count parent component
       setItems(isLimited ? result.slice(0, 3) : result);
     }
@@ -114,6 +114,7 @@ const Cards = ({
                   onPrevPage={prevPage}
                   onPageSelect={goToPage}
                   currentPage={currentPage}
+                  pageCount={pageCount}
                 />
               </div>
             ) : (

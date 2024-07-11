@@ -7,11 +7,26 @@ interface PaginationProps {
   onPrevPage: IButtonEvent;
   onPageSelect: (page: number) => void;
   currentPage: number;
+  pageCount: number;
 }
 
-const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage }: PaginationProps) => {
-  const numberClass =
+const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCount }: PaginationProps) => {
+  const pageClass =
     "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white";
+
+  const renderPages = () => {
+    const pagesArray = [];
+    for (let i = 1; i <= pageCount; i++) {
+      pagesArray.push(
+        <li onClick={() => onPageSelect(i)}>
+          <a href="#1" className={pageClass}>
+            {i}
+          </a>
+        </li>
+      );
+    }
+    return pagesArray;
+  };
 
   return (
     <nav aria-label="Page navigation example">
@@ -26,11 +41,7 @@ const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage }: Pagin
           </button>
         </li>
 
-        <li>
-          <a href="#1" className={numberClass}>
-            {currentPage}
-          </a>
-        </li>
+        {renderPages()}
 
         <li>
           <button

@@ -9,13 +9,15 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../models/products";
 import { searchProduct, updateSearchedCategories } from "../store/products/productsActions";
 import { useSearchParams } from "react-router-dom";
+import { AppDispatch } from "../store/configureStore";
+import { createSlug } from "../helpers/utils";
 
 const ShopPage = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   const [itemsLength, setItemsLength] = useState<number>(0);
   const { categories, products } = useSelector((state: RootState) => state.products);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSerachChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const productsClone = [...products];
@@ -23,11 +25,12 @@ const ShopPage = (): JSX.Element => {
       products.title.toLowerCase().includes(event.target.value.toLocaleLowerCase())
     );
 
-    dispatch(searchProduct(res, event.target.value) as any);
+    dispatch(searchProduct(res, event.target.value));
   };
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
+
     setSelectedCategory((prevState) => {
       let newSelectedCategory;
 
@@ -37,7 +40,7 @@ const ShopPage = (): JSX.Element => {
         newSelectedCategory = prevState.filter((category) => category !== name);
       }
 
-      dispatch(updateSearchedCategories(newSelectedCategory) as any);
+      dispatch(updateSearchedCategories(newSelectedCategory));
       return newSelectedCategory;
     });
   };
@@ -51,11 +54,21 @@ const ShopPage = (): JSX.Element => {
     }
   };
 
+  const handleDeleteCategory = (category: string) => {
+    const selectedCategoryClone = [...selectedCategory];
+    let categories = selectedCategoryClone.filter((categoryItem) => categoryItem !== category);
+    setSelectedCategory(() => {
+      setSearchParams({ category: categories.toString() });
+      dispatch(updateSearchedCategories(categories));
+      return [...categories];
+    });
+  };
+
   const handleDeleteFilters = () => {
     searchParams.delete("category");
     setSearchParams(searchParams);
     setSelectedCategory(() => {
-      dispatch(updateSearchedCategories([]) as any);
+      dispatch(updateSearchedCategories([]));
       return [];
     });
   };
@@ -78,7 +91,11 @@ const ShopPage = (): JSX.Element => {
             <div className="badges flex flex-wrap gap-3">
               {selectedCategory && selectedCategory.length > 0 ? (
                 selectedCategory.map((category: string, index: number) => (
-                  <Badge key={`${category}--${Math.random() * 65482 * index}`} text={category} />
+                  <Badge
+                    onClose={() => handleDeleteCategory(category)}
+                    key={`${category}--${Math.random() * 65482 * index}`}
+                    text={category}
+                  />
                 ))
               ) : (
                 <></>

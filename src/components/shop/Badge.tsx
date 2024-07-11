@@ -1,18 +1,13 @@
 import { FaRegTimesCircle } from "react-icons/fa";
-import { createSlug } from "../../helpers/utils";
-import { deleteCategory } from "../../store/products/productsActions";
 
 interface BadgeProps {
   text: string;
   className?: string;
   hasClose?: boolean;
+  onClose?: React.MouseEventHandler<SVGElement>;
 }
 
-const Badge = ({ text, className, hasClose = true }: BadgeProps) => {
-  const handleClick = () => {
-    deleteCategory(createSlug(text));
-  };
-
+const Badge = ({ text, className, hasClose = true, onClose = () => {} }: BadgeProps) => {
   return (
     <div
       className={`px-4 py-1  text-black w-max h-max flex items-center gap-2 mb-2 capitalize ${
@@ -20,7 +15,7 @@ const Badge = ({ text, className, hasClose = true }: BadgeProps) => {
       }`}
     >
       {text}
-      {hasClose ? <FaRegTimesCircle onClick={handleClick} /> : <></>}
+      {hasClose ? <FaRegTimesCircle onClick={onClose} /> : <></>}
     </div>
   );
 };

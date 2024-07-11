@@ -18,7 +18,7 @@ const Card = ({ item }: CardProps) => {
         <img
           src={item.image}
           alt={item.title}
-          className="w-full select-none object-cover object-top"
+          className="w-full select-none object-contain object-center"
           style={{ height: "438px" }}
         />
 

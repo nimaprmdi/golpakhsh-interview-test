@@ -9,12 +9,12 @@ const Form = () => {
       <div className="w-full flex justify-between flex-wrap mb-8">
         <h4 className="text-lg font-normal">Contact</h4>
 
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-normal">have an account?</span>
-          <Link className="capitalize text-primary text-sm font-normal" to="/">
-            Log in
-          </Link>
-        </div>
+        <Link to="/login" className="text-sm font-normal">
+          <div className="flex items-center gap-2">
+            have an account?
+            <span className="capitalize text-primary text-sm font-normal">Log in</span>
+          </div>
+        </Link>
 
         <InputElement type="text" name="email" className="form-input w-full my-3" placeholder="Email" />
 
@@ -76,10 +76,10 @@ const Form = () => {
 
         {/* Action Buttons */}
         <div className="w-full flex justify-between mt-8">
-          <button className="btn-primary flex items-center text-primary">
+          <Link to="/cart" className="btn-primary flex items-center text-primary">
             <FaAngleLeft className="text-primary me-2" />
             Return to Cart
-          </button>
+          </Link>
 
           <button className="btn-dark">Continue to shipping</button>
         </div>

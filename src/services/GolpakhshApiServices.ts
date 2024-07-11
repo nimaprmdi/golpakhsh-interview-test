@@ -14,11 +14,11 @@ class GolpakhshApiServices {
       .then((response) => {
         const res = response.data;
 
-        toast.success("Request Published Successfuly");
+        toast.success("Products fetched successfuly");
         store.dispatch(productsActions.FETCH_DATA_SUCCESSFUL(res));
       })
       .catch((error) => {
-        toast.error("Publish Request Failed");
+        toast.error("Products fetched failed");
         console.log(error);
       });
   };
@@ -31,11 +31,11 @@ class GolpakhshApiServices {
       .then((response) => {
         const res = response.data;
 
-        toast.success("Request Published Successfuly");
+        toast.success("Categories fetched successfuly");
         store.dispatch(productsActions.FETCH_CATEGORIES_SUCCESSFUL(res));
       })
       .catch((error) => {
-        toast.error("Publish Request Failed");
+        toast.error("Categories fetch failed");
         console.log(error);
       });
   };

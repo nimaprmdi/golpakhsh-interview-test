@@ -1,13 +1,28 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { RootState } from "../rootReducer";
 import { IProduct } from "../../models/products";
+import { toast } from "react-toastify";
 import * as actions from "../cart/cartReducers";
+import { ISelectedItem } from "../../models/cart";
 
-const addToCart = (product: IProduct, count: number) => (dispatch: Dispatch, getState: () => RootState) => {
-  // create a dispatch that add object like this { [id]: count }
-  const itemCount = getState().cart.cartItems;
-  console.log(itemCount);
-  dispatch(actions.ADD_ITEM({ id: product.id.toString(), count }));
+const incrementItem = (product: IProduct) => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.INCREMENT_ITEM({ product }));
+  toast.success("Item added to basket");
 };
 
-export { addToCart };
+const decrementItem = (product: IProduct) => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.DECREMENT_ITEM({ product }));
+  toast.success("Item decremented");
+};
+
+const addToWishLists = (product: IProduct) => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.ADD_TO_WISHLIST({ product }));
+  toast.success("Action successd");
+};
+
+const removeFromCart = (product: ISelectedItem) => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.REMOVE_ITEM({ product }));
+  toast.success("Action successd");
+};
+
+export { incrementItem, decrementItem, addToWishLists, removeFromCart };

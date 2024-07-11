@@ -1,11 +1,14 @@
-interface ICartPayload {
-  id: string;
-  count: number | string;
+import { IProduct } from "./products";
+
+interface ISelectedItem extends IProduct {
+  quantity: number;
 }
 
-interface ICartInitialState {
-  cartItems: ICartPayload[];
-  isLoading: boolean;
+interface CartState {
+  selectedItems: ISelectedItem[];
+  wishLists: IProduct[];
+  itemCounter: number;
+  priceTotal: number;
 }
 
-export type { ICartInitialState, ICartPayload };
+export type { CartState, ISelectedItem };

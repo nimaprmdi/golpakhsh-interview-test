@@ -40,7 +40,7 @@ const Navbar = ({ isPrimary = true }: NavbarProps) => {
                   <NavLink to="/login" className={(isActive) => linkClasss(isActive)}>
                     <FaUserAlt />
                   </NavLink>
-                  <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
+                  <NavLink to="/cart" className={(isActive) => linkClasss(isActive)}>
                     <FaShoppingBag />
                   </NavLink>
                 </div>
