@@ -12,7 +12,7 @@ interface NumberProps {
 
 const NumberElement = ({ className, value, onIncrement, onDecrement }: NumberProps) => {
   return (
-    <form className={`max-w-xs mx-auto ${className || ""}`}>
+    <form className={`${className || ""}`}>
       <div className="relative flex items-center max-w-[8rem]">
         <button
           type="button"

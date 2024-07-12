@@ -25,4 +25,9 @@ const removeFromCart = (product: ISelectedItem) => (dispatch: Dispatch, getState
   toast.success("Action successd");
 };
 
-export { incrementItem, decrementItem, addToWishLists, removeFromCart };
+const resetCart = () => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.RESET_CART());
+  toast.success("Action successd");
+};
+
+export { incrementItem, decrementItem, addToWishLists, removeFromCart, resetCart };

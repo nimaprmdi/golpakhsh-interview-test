@@ -1,8 +1,64 @@
+import { cloneDeep } from "lodash";
+import { useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
+import { Shipping as ShippingModel } from "../../models/forms";
+import { Errors } from "../../models/error";
+import { shippingSchema } from "../../helpers/validation/schemas";
+import { validate, validateProperty } from "../../helpers/validation/validate";
+import { deepClone } from "../../helpers/utils";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/configureStore";
+import { resetCart } from "../../store/cart/cartActions";
 const Shipping = () => {
+  const [errors, setErrors] = useState<Errors>({});
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+  const [data, setData] = useState<ShippingModel>({
+    expectedDate: "",
+    guaranteed: "",
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const errorMsg = validateProperty(event.target, shippingSchema);
+
+    if (errorMsg) {
+      setErrors({ ...errors, [event.target.name]: errorMsg });
+    } else {
+      setErrors((prevState) => {
+        const errorsClone = { ...deepClone(prevState) };
+        delete errorsClone[event.target.name];
+        return { ...errorsClone };
+      });
+    }
+
+    setData(() => {
+      const res = { ...cloneDeep(data), [event.target.name]: event.target.value };
+      return res;
+    });
+  };
+
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    const errorMsg = validate(data, shippingSchema);
+
+    const handleError = () => {
+      toast.error("Please select radio options");
+      setErrors({ ...errors, ...errorMsg });
+    };
+
+    const handleSuccess = () => {
+      dispatch(resetCart());
+      navigate("/payment-successful");
+    };
+
+    !errorMsg ? handleSuccess() : handleError();
+  };
+
   return (
-    <div className="w-full">
+    <div className="w-full pb-8">
       {/* Contact  */}
       <div className="w-full flex justify-between border-b border-gray-200 pb-5">
         <span className="text-lg font-normal">Contact</span>
@@ -29,24 +85,48 @@ const Shipping = () => {
 
         {/* inputs */}
         <div className="w-full md:w-8/12 flex flex-wrap justify-start gap-x-8 gap-y-4 mt-3">
-          <input type="radio" id="age1" name="age" value="30" />
-          <label className="md:ms-2 text-xs md:text-base" htmlFor="age1">
+          <input
+            type="radio"
+            onChange={handleChange}
+            id="expected_date_1"
+            name="expectedDate"
+            value="Monday, August 14"
+          />
+          <label className="md:ms-2 text-xs md:text-base" htmlFor="expected_date_1">
+            Monday, August 14
+          </label>
+
+          <input
+            type="radio"
+            onChange={handleChange}
+            id="expected_date_2"
+            name="expectedDate"
+            value="Wednesday, August 16"
+          />
+          <label className="md:ms-2 text-xs md:text-base" htmlFor="expected_date_2">
             Wednesday, August 16
           </label>
 
-          <input type="radio" id="age2" name="age" value="30" />
-          <label className="md:ms-2 text-xs md:text-base" htmlFor="age2">
+          <input
+            type="radio"
+            onChange={handleChange}
+            id="expected_date_3"
+            name="expectedDate"
+            value="Tuesday, August 22"
+          />
+          <label className="md:ms-2 text-xs md:text-base" htmlFor="expected_date_3">
+            Tuesday, August 22
+          </label>
+
+          <input
+            type="radio"
+            onChange={handleChange}
+            id="expected_date_4"
+            name="expectedDate"
+            value="Friday, August 25"
+          />
+          <label className="md:ms-2 text-xs md:text-base" htmlFor="expected_date_4">
             Friday, August 25
-          </label>
-
-          <input type="radio" id="age3" name="age" value="30" />
-          <label className="md:ms-2 text-xs md:text-base" htmlFor="age3">
-            Tuesday, August 22
-          </label>
-
-          <input type="radio" id="age4" name="age" value="30" />
-          <label className="md:ms-2 text-xs md:text-base" htmlFor="age4">
-            Tuesday, August 22
           </label>
         </div>
       </div>
@@ -64,8 +144,14 @@ const Shipping = () => {
         <div className="w-full md:w-8/12 mt-2 md:mt-0">
           <div className="flex justify-between">
             <div>
-              <input type="radio" id="age5" name="alt" value="30" />
-              <label className="capitalize md:ps-3 text-xs md:text-base" htmlFor="age5">
+              <input
+                type="radio"
+                onChange={handleChange}
+                id="guaranteed_1"
+                name="guaranteed"
+                value="wednesday, August 11th by 8 PM"
+              />
+              <label className="capitalize md:ps-3 text-xs md:text-base" htmlFor="guaranteed_1">
                 wednesday, August 11th by 8 PM
               </label>
             </div>
@@ -77,8 +163,14 @@ const Shipping = () => {
 
           <div className="flex justify-between">
             <div>
-              <input type="radio" id="age6" name="alt" value="30" />
-              <label className="capitalize md:ps-3 text-xs md:text-base" htmlFor="age6">
+              <input
+                type="radio"
+                onChange={handleChange}
+                id="guaranteed_2"
+                name="guaranteed"
+                value="wednesday, August 11th By Noon"
+              />
+              <label className="capitalize md:ps-3 text-xs md:text-base" htmlFor="guaranteed_2">
                 wednesday, August 11th By Noon
               </label>
             </div>
@@ -90,12 +182,14 @@ const Shipping = () => {
 
       {/* Action Buttons */}
       <div className="w-full flex justify-between mt-8">
-        <button className="btn-primary flex items-center text-primary">
+        <button onClick={() => navigate(-1)} className="btn-primary flex items-center text-primary">
           <FaAngleLeft className="text-primary me-2" />
           return to information
         </button>
 
-        <button className="btn-dark">Continue To Payment</button>
+        <button onClick={handleSubmit} className="btn-dark">
+          Continue To Payment
+        </button>
       </div>
     </div>
   );

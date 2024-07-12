@@ -41,7 +41,7 @@ const CartItem = ({ item }: CartItemProps) => {
                 onIncrement={() => dispatch(incrementItem(item))}
                 onDecrement={() => dispatch(decrementItem(item))}
                 value={item.quantity}
-                className="absolute right-0 md:static"
+                className="max-w-xs mx-auto absolute right-0 md:static"
               />
             </span>
           </div>

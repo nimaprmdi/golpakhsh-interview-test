@@ -1,2 +1,0 @@
-const initMethod = () => {};
-export { initMethod };

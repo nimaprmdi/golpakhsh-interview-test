@@ -14,6 +14,8 @@ const createSlug = (text: string) => {
 
 /**
  *
+ * Simple Paginate Function
+ *
  * @param array
  * @param pageSize
  * @param pageNumber
@@ -23,4 +25,15 @@ function paginate(array: any[], pageSize: number, pageNumber: number) {
   return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
 }
 
-export { createSlug, paginate };
+/**
+ *
+ * Safe Clone from a object or array
+ *
+ * @param object {Object}
+ * @returns
+ */
+function deepClone<T>(object: T): T {
+  return JSON.parse(JSON.stringify(object));
+}
+
+export { createSlug, paginate, deepClone };

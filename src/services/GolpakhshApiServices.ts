@@ -41,4 +41,5 @@ class GolpakhshApiServices {
   };
 }
 
-export default new GolpakhshApiServices();
+const golpakhshApiServices = new GolpakhshApiServices();
+export default golpakhshApiServices;

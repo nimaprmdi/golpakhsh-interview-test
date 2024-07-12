@@ -17,9 +17,7 @@ const fetchProducts = () => (dispatch: Dispatch, getState: () => RootState) => {
 const fetchCategories = () => (dispatch: Dispatch, getState: () => RootState) => {
   const { lastFetch } = getState().products;
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
-
   if (diffInMinutes < 10) return;
-
   apiService.fetchCategories();
 };
 

@@ -62,8 +62,14 @@ const cartsSlice = createSlice({
         ? (state.wishLists = state.wishLists.filter((item) => item.id !== foundProduct.id))
         : state.wishLists.push(product);
     },
+
+    RESET_CART: (state) => {
+      state.selectedItems = [];
+      state.itemCounter = 0;
+      state.priceTotal = 0;
+    },
   },
 });
 
-export const { INCREMENT_ITEM, ADD_TO_WISHLIST, DECREMENT_ITEM, REMOVE_ITEM } = cartsSlice.actions;
+export const { INCREMENT_ITEM, ADD_TO_WISHLIST, DECREMENT_ITEM, REMOVE_ITEM, RESET_CART } = cartsSlice.actions;
 export default cartsSlice.reducer;
