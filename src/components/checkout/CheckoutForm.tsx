@@ -40,7 +40,6 @@ const CheckoutForm = () => {
       });
     }
 
-    console.log("errorMsg", errorMsg);
     const value =
       e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : e.target.value;
 

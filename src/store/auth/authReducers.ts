@@ -1,19 +1,33 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as models from "../../models/auth";
 
-const initialState: models.IAuth = {
+const initialState: models.AuthState = {
   isLoggedIn: false,
+  loading: false,
+  lastFetch: 0,
+  username: "",
 };
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: initialState as models.IAuth,
+  initialState: initialState as models.AuthState,
   reducers: {
-    FETCH_USER: (state) => {
-      console.log("clicked");
+    SET_LOADING: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
+
+    LOGIN_SUCCESS: (state, action: PayloadAction<string>) => {
+      state.isLoggedIn = true;
+      state.username = action.payload;
+    },
+
+    LOGIN_FAILURE: (state) => {
+      state.isLoggedIn = false;
+      state.loading = false;
+      state.username = "";
     },
   },
 });
 
-export const { FETCH_USER } = authSlice.actions;
+export const { SET_LOADING, LOGIN_SUCCESS, LOGIN_FAILURE } = authSlice.actions;
 export default authSlice.reducer;

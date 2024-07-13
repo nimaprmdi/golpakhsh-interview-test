@@ -12,7 +12,7 @@ const Breadcrumb = () => {
       <div className="w-full flex justify-between mb-6 items-center mt-20">
         {/* Left Side */}
         <div className="flex items-center gap-12">
-          <span onClick={() => navigate(-1)} className="text-primary text-sm">
+          <span onClick={() => navigate(-1)} className="text-primary text-sm cursor-pointer hover:text-black">
             Back
           </span>
 

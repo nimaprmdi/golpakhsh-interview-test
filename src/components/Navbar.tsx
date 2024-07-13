@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/Logo.svg";
 import { FaSearch, FaShoppingBag, FaUserAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/rootReducer";
 
 interface NavbarProps {
   isPrimary?: boolean;
@@ -9,6 +11,8 @@ interface NavbarProps {
 const Navbar = ({ isPrimary = true }: NavbarProps) => {
   const linkClasss = ({ isActive }: { isActive: boolean }) =>
     isActive ? "hover:text-primary rounded-md px-3 py-2" : "hover:text-primary rounded-md px-3 py-2";
+
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
   return (
     <nav className="bg-white">
@@ -37,7 +41,7 @@ const Navbar = ({ isPrimary = true }: NavbarProps) => {
                   <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
                     <FaSearch className="text-black" />
                   </NavLink>
-                  <NavLink to="/login" className={(isActive) => linkClasss(isActive)}>
+                  <NavLink to={isLoggedIn ? "/cart" : "/login"} className={(isActive) => linkClasss(isActive)}>
                     <FaUserAlt />
                   </NavLink>
                   <NavLink to="/cart" className={(isActive) => linkClasss(isActive)}>

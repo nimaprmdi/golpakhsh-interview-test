@@ -29,4 +29,8 @@ const shippingSchema = Joi.object({
     .required(),
 });
 
-export { schema, shippingSchema };
+const loginSchema = Joi.object({
+  username: Joi.string().min(3).label("Username").required(),
+  password: Joi.string().min(3).label("Password").required(),
+});
+export { schema, shippingSchema, loginSchema };
