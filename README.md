@@ -1,4 +1,4 @@
-# Vision-Dashboard - [Demo](https://nimaprmdi.github.io/vision-dashboard/)
+# GPA TEST - [Demo](https://nimaprmdi.github.io/vision-dashboard/)
 
 Golpakhsh TEST interview shop is a SHOP app using TypeScript, React, Axios and other related technologies.
 
