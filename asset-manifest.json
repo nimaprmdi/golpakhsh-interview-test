@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/golpakhsh-interview-test/static/css/main.551bd984.css",
-    "main.js": "/golpakhsh-interview-test/static/js/main.d5f8c226.js",
+    "main.js": "/golpakhsh-interview-test/static/js/main.02ecc4a4.js",
     "static/js/453.42160ccb.chunk.js": "/golpakhsh-interview-test/static/js/453.42160ccb.chunk.js",
     "static/media/hero.png": "/golpakhsh-interview-test/static/media/hero.7ee2b0eba7d25ff6cc37.png",
     "static/media/masonry-(3).jpg": "/golpakhsh-interview-test/static/media/masonry-(3).a5fc195829b1da2996da.jpg",
@@ -16,11 +16,11 @@
     "static/media/masonry-(4).jpg": "/golpakhsh-interview-test/static/media/masonry-(4).d79c4a05b2775acc9c75.jpg",
     "index.html": "/golpakhsh-interview-test/index.html",
     "main.551bd984.css.map": "/golpakhsh-interview-test/static/css/main.551bd984.css.map",
-    "main.d5f8c226.js.map": "/golpakhsh-interview-test/static/js/main.d5f8c226.js.map",
+    "main.02ecc4a4.js.map": "/golpakhsh-interview-test/static/js/main.02ecc4a4.js.map",
     "453.42160ccb.chunk.js.map": "/golpakhsh-interview-test/static/js/453.42160ccb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.551bd984.css",
-    "static/js/main.d5f8c226.js"
+    "static/js/main.02ecc4a4.js"
   ]
 }
