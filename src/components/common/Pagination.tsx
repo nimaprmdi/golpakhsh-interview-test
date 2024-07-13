@@ -31,7 +31,7 @@ const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCou
     return pagesArray;
   };
 
-  return (
+  return pageCount ? (
     <nav aria-label="Page navigation example">
       <ul className="flex items-center -space-x-px h-8 text-sm">
         <li>
@@ -57,6 +57,8 @@ const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCou
         </li>
       </ul>
     </nav>
+  ) : (
+    <></>
   );
 };
 
