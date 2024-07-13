@@ -11,15 +11,18 @@ interface PaginationProps {
 }
 
 const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCount }: PaginationProps) => {
-  const pageClass =
-    "flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white";
+  const listClass = (isCurrent: number): string =>
+    `flex items-center justify-center px-3 h-8 leading-tight   border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ${
+      currentPage === isCurrent ? "bg-primary text-white" : "bg-white text-gray-500"
+    }`;
 
   const renderPages = () => {
     const pagesArray = [];
     for (let i = 1; i <= pageCount; i++) {
+      const itemClass = listClass(i);
       pagesArray.push(
         <li key={`pagination--${Math.random() * 5000 * i}`} onClick={() => onPageSelect(i)}>
-          <a href="#1" className={pageClass}>
+          <a href="#1" className={itemClass}>
             {i}
           </a>
         </li>
@@ -34,7 +37,7 @@ const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCou
         <li>
           <button
             onClick={onPrevPage}
-            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-white bg-primary  border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
           >
             <span className="sr-only">Previous</span>
             <FaAngleLeft />
@@ -46,7 +49,7 @@ const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCou
         <li>
           <button
             onClick={onNextPage}
-            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            className="flex items-center justify-center px-3 h-8 leading-tight text-white bg-primary border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
           >
             <span className="sr-only">Next</span>
             <FaAngleRight />
