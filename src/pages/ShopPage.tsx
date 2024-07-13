@@ -3,81 +3,25 @@ import Badge from "../components/shop/Badge";
 import FilterSubmition from "../components/filter/FilterSubmition";
 import SearchInput from "../components/common/SearchInputElement";
 import Dropdown from "../components/common/Dropdown";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { IProduct } from "../models/products";
-import { searchProduct, updateSearchedCategories } from "../store/products/productsActions";
-import { useSearchParams } from "react-router-dom";
-import { AppDispatch } from "../store/configureStore";
+import React, { useEffect, useState } from "react";
 import { useProducts } from "../hooks/useProducts";
+import { useSearch } from "../hooks/useSearch";
+import { useFilter } from "../hooks/useFilter";
 
-const ShopPage = (): JSX.Element => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+const ShopPage: React.FC = (): JSX.Element => {
   const [itemsLength, setItemsLength] = useState<number>(0);
   const { categories, products } = useProducts();
-  const dispatch = useDispatch<AppDispatch>();
 
-  const handleSerachChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const productsClone = [...products];
-    const res = productsClone.filter((products: IProduct) =>
-      products.title.toLowerCase().includes(event.target.value.toLocaleLowerCase())
-    );
-
-    dispatch(searchProduct(res, event.target.value));
-  };
-
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
-
-    setSelectedCategory((prevState) => {
-      let newSelectedCategory;
-
-      if (checked && !prevState.includes(name)) {
-        newSelectedCategory = [...prevState, name];
-      } else {
-        newSelectedCategory = prevState.filter((category) => category !== name);
-      }
-
-      dispatch(updateSearchedCategories(newSelectedCategory));
-      return newSelectedCategory;
-    });
-  };
-
-  const handleApplyFilters = () => {
-    if (selectedCategory.length === 0) {
-      searchParams.delete("category");
-      setSearchParams(searchParams);
-    } else {
-      setSearchParams({ category: selectedCategory.toString() });
-    }
-  };
-
-  const handleDeleteCategory = (category: string) => {
-    const selectedCategoryClone = [...selectedCategory];
-    let categories = selectedCategoryClone.filter((categoryItem) => categoryItem !== category);
-    setSelectedCategory(() => {
-      setSearchParams({ category: categories.toString() });
-      dispatch(updateSearchedCategories(categories));
-      return [...categories];
-    });
-  };
-
-  const handleDeleteFilters = () => {
-    searchParams.delete("category");
-    setSearchParams(searchParams);
-    setSelectedCategory(() => {
-      dispatch(updateSearchedCategories([]));
-      return [];
-    });
-  };
+  const { searchResults, handleSearchChange } = useSearch(products);
+  const { selectedCategories, handleCategoryChange, applyFilters, clearFilters, deleteCategory } =
+    useFilter(searchResults);
 
   useEffect(() => {}, [categories, products]);
 
   return (
     <section className="w-full flex justify-center">
       <div className="max-w-1224 w-full text-center">
-        <SearchInput onChange={handleSerachChange} />
+        <SearchInput onChange={handleSearchChange} />
 
         <h6 className="text-center text-xl py-10">{itemsLength} Items</h6>
 
@@ -88,10 +32,10 @@ const ShopPage = (): JSX.Element => {
             <h4 className="text-left font-semibold text-3xl text-black mb-4">Filters</h4>
             {/* Badges */}
             <div className="badges flex flex-wrap gap-3">
-              {selectedCategory && selectedCategory.length > 0 ? (
-                selectedCategory.map((category: string, index: number) => (
+              {selectedCategories && selectedCategories.length > 0 ? (
+                selectedCategories.map((category: string, index: number) => (
                   <Badge
-                    onClose={() => handleDeleteCategory(category)}
+                    onClose={() => deleteCategory(category)}
                     key={`${category}--${Math.random() * 65482 * index}`}
                     text={category}
                   />
@@ -102,11 +46,10 @@ const ShopPage = (): JSX.Element => {
             </div>
 
             {/* Filter Submition */}
-            <FilterSubmition onClearFilterClick={handleDeleteFilters} onApplyFilterClick={handleApplyFilters} />
+            <FilterSubmition onClearFilterClick={clearFilters} onApplyFilterClick={applyFilters} />
 
             <div className="w-full">
-              <Dropdown data={categories} onChange={handleCheckboxChange} />
-              {/*<Dropdown className="mt-4" />*/}
+              <Dropdown data={categories} onChange={handleCategoryChange} />
             </div>
           </div>
 
@@ -129,4 +72,4 @@ const ShopPage = (): JSX.Element => {
   );
 };
 
-export default ShopPage;
+export default React.memo(ShopPage);
