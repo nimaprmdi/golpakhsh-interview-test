@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Shipping as ShippingModel } from "../../models/forms";
@@ -11,9 +11,12 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { resetCart } from "../../store/cart/cartActions";
+import { useCart } from "../../hooks/useCart";
+
 const Shipping = () => {
   const [errors, setErrors] = useState<Errors>({});
   const dispatch = useDispatch<AppDispatch>();
+  const { selectedItems } = useCart();
   const navigate = useNavigate();
   const [data, setData] = useState<ShippingModel>({
     expectedDate: "",
@@ -56,6 +59,15 @@ const Shipping = () => {
 
     !errorMsg ? handleSuccess() : handleError();
   };
+
+  useEffect(() => {
+    const handleAction = () => {
+      toast.info("You dont have any items in basket please go shopping");
+      navigate("/shop");
+    };
+
+    selectedItems.length === 0 && handleAction();
+  }, [selectedItems, navigate]);
 
   return (
     <div className="w-full pb-8">
