@@ -10,10 +10,12 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (selectedItems.length === 0) {
+    const handleAction = () => {
       toast.info("You dont have any items in basket please go shopping");
       navigate("/shop");
-    }
+    };
+
+    selectedItems.length === 0 && handleAction();
   }, [selectedItems, navigate]);
 
   return (

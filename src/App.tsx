@@ -25,9 +25,12 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { AppDispatch } from "./store/configureStore";
 import { useProducts } from "./hooks/useProducts";
-// import { AuthLayouts } from "./layouts/AuthLayouts";
+import { AuthLayouts } from "./layouts/AuthLayouts";
 
-// const AuthenticatedComponents = AuthLayouts();
+// HOC authenticate the pages
+const AuthenticatedCartPage = AuthLayouts(CartPage);
+const AuthenticatedCheckoutPage = AuthLayouts(CheckoutPage);
+const AuthenticatedShippingPage = AuthLayouts(ShippingPage);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,9 +44,9 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="/" element={<SecondaryLayout />}>
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/shipping" element={<ShippingPage />} />
+        <Route path="/cart" element={<AuthenticatedCartPage />} />
+        <Route path="/checkout" element={<AuthenticatedCheckoutPage />} />
+        <Route path="/shipping" element={<AuthenticatedShippingPage />} />
       </Route>
     </>
   )

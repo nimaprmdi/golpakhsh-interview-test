@@ -75,7 +75,7 @@ const LoginPage = () => {
             log in
           </button>
 
-          <span className="mt-5">johnd | m38rmF$</span>
+          <span className="mt-5">johnd|m38rmF$</span>
         </div>
       </div>
     </section>
