@@ -1,5 +1,5 @@
 import { ISelectedItem } from "../../models/cart";
-import OrderSummary from "../common/shop/OrderSummary";
+import OrderSummary from "../shop/OrderSummary";
 import CartItem from "./CartItem";
 
 interface ContentProps {

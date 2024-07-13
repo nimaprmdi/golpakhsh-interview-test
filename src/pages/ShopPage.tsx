@@ -1,7 +1,7 @@
 import Cards from "../components/shop/Cards";
 import Badge from "../components/shop/Badge";
 import FilterSubmition from "../components/filter/FilterSubmition";
-import SearchInput from "../components/common/SearchInput";
+import SearchInput from "../components/common/SearchInputElement";
 import Dropdown from "../components/common/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
@@ -10,7 +10,6 @@ import { IProduct } from "../models/products";
 import { searchProduct, updateSearchedCategories } from "../store/products/productsActions";
 import { useSearchParams } from "react-router-dom";
 import { AppDispatch } from "../store/configureStore";
-import { createSlug } from "../helpers/utils";
 
 const ShopPage = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();

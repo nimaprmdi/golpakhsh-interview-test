@@ -7,7 +7,6 @@ import { RootState } from "../store/rootReducer";
 import { useParams } from "react-router-dom";
 import { incrementItem, addToWishLists } from "../store/cart/cartActions";
 import { AppDispatch } from "../store/configureStore";
-import { ISelectedItem } from "../models/cart";
 
 const ShopSinglePage = (): JSX.Element => {
   const [productItem, setProductItem] = useState<IProduct>();

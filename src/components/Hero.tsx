@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import hero from "../assets/images/hero.png";
 
 interface HeroProps {
@@ -11,6 +12,8 @@ const Hero = ({
   subTitle = "Earth’s harmony",
   buttonText = "New In",
 }: HeroProps) => {
+  const navigate = useNavigate();
+
   return (
     <section
       style={{
@@ -27,7 +30,9 @@ const Hero = ({
           <h2 className="text-2xl md:text-4xl italic font-gillsansmt mb-2 text-shadow-lg">{title}</h2>
           <h2 className="text-2xl md:text-4xl italic font-gillsansmt">{subTitle}</h2>
 
-          <button className="btn-primary mt-10 md:mt-7">{buttonText}</button>
+          <button onClick={() => navigate("/shop")} className="btn-primary mt-10 md:mt-7">
+            {buttonText}
+          </button>
         </div>
       </div>
     </section>
