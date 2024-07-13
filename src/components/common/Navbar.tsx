@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, NavLinkRenderProps } from "react-router-dom";
 import logo from "../../assets/images/Logo.svg";
 import { FaSearch, FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
@@ -27,29 +27,42 @@ const Navbar = ({ isPrimary = true }: NavbarProps) => {
       {/* Menu */}
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-          <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
-            <NavLink className="flex flex-shrink-0 items-center mr-4" to="/">
-              {/* <span className="hidden md:block text-white text-2xl font-bold ml-2">Golpakhsh's TEST</span> */}
+          <div className="w-full flex items-center justify-between md:items-stretch md:justify-between relative">
+            <NavLink
+              className="lg:order-1 order-2 flex flex-shrink-0 items-center justify-center mr-4 w-5/12 lg:w-2/12"
+              to="/"
+            >
               <img src={logo} alt="modimal" />
             </NavLink>
 
-            {isPrimary ? (
-              <div className="md:ml-auto">
-                <div className="flex space-x-2 h-full items-center">
-                  <NavLink to="/shop" className={(isActive) => linkClasss(isActive)}>
-                    <FaSearch className="text-black" />
-                  </NavLink>
-                  <NavLink to={isLoggedIn ? "/cart" : "/login"} className={(isActive) => linkClasss(isActive)}>
-                    <FaUserAlt />
-                  </NavLink>
-                  <NavLink to="/cart" className={(isActive) => linkClasss(isActive)}>
-                    <FaShoppingBag />
-                  </NavLink>
-                </div>
-              </div>
-            ) : (
-              <></>
-            )}
+            <NavLink
+              to="/shop"
+              className={`lg:order-2 order-1 w-3/12 max-w-28 lg:w-7/12 flex justify-center items-center text-base ${(
+                isActive: NavLinkRenderProps
+              ) => linkClasss(isActive)}`}
+            >
+              Products
+            </NavLink>
+
+            <div className="order-3 w-2/12 flex justify-end gap-8 items-center ">
+              <NavLink to="/shop" className={`w-max  ${(isActive: NavLinkRenderProps) => linkClasss(isActive)}`}>
+                <FaSearch className="text-black" />
+              </NavLink>
+
+              <NavLink
+                className={`w-max  ${(isActive: NavLinkRenderProps) => linkClasss(isActive)}`}
+                to={isLoggedIn ? "/cart" : "/login"}
+              >
+                <FaUserAlt />
+              </NavLink>
+
+              <NavLink
+                className={`w-max absolute lg:static left-0  ${(isActive: NavLinkRenderProps) => linkClasss(isActive)}`}
+                to="/cart"
+              >
+                <FaShoppingBag />
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>

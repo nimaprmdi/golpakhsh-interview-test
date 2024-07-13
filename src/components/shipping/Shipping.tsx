@@ -68,10 +68,8 @@ const Shipping = () => {
       <h4 className="font-bold text-xl capitalize border-b pb-4 mt-4 mb-6 border-gray-200">Delivery Options</h4>
 
       {/* Shipping Type */}
-
       <div className="w-full flex justify-between mt-8">
         <h5 className="text-gray-500 font-bold">Express Courier (Air)</h5>
-
         <span className="text-base font-bold ">Free</span>
       </div>
 

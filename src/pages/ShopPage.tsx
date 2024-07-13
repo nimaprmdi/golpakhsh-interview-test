@@ -26,9 +26,9 @@ const ShopPage: React.FC = (): JSX.Element => {
         <h6 className="text-center text-xl py-10">{itemsLength} Items</h6>
 
         {/* Shop Container */}
-        <section className="w-full flex flex-wrap">
+        <section className="w-full flex flex-col xl:flex-row justify-center flex-wrap">
           {/* The Filters */}
-          <div className="w-4/12 h-full pe-2">
+          <div className="w-full xl:w-4/12 h-full pe-2">
             <h4 className="text-left font-semibold text-3xl text-black mb-4">Filters</h4>
             {/* Badges */}
             <div className="badges flex flex-wrap gap-3">
@@ -54,7 +54,7 @@ const ShopPage: React.FC = (): JSX.Element => {
           </div>
 
           {/* The Content */}
-          <div className="w-8/12 h-full ps-2">
+          <div className="w-full xl:w-8/12 h-full ps-2">
             <Cards
               link="/items"
               title="Best Sellers"

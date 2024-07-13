@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/images/login-image.jpg";
 import InputElement from "../components/common/InputElement";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Auth } from "../models/auth";
 import { validate } from "../helpers/validation/validate";
 import { loginSchema } from "../helpers/validation/schemas";
@@ -18,6 +18,7 @@ const LoginPage = () => {
     username: "",
     password: "",
   });
+  const ref = useRef<HTMLButtonElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -28,12 +29,14 @@ const LoginPage = () => {
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    event.currentTarget.innerText = "Please Wait...";
 
     const errorMsg = validate(data, loginSchema);
 
     const handleError = () => {
       toast.error("Please check your inputs");
       setErrors({ ...errors, ...errorMsg });
+      event.currentTarget.innerText = "Login";
     };
 
     const handleSuccess = () => {
@@ -45,7 +48,7 @@ const LoginPage = () => {
 
   return (
     <section className="w-full flex justify-center pb-12">
-      <div className="w-full max-w-1224 flex flex-wrap ">
+      <div className="w-full max-w-1224 flex flex-wrap">
         <div className="w-full md:w-1/2">
           <img src={loginImage} alt="login-page" className="w-full object-cover object-center  h-72 md:h-auto" />
         </div>
@@ -71,11 +74,12 @@ const LoginPage = () => {
           <Link className="text-primary mt-2" to="/">
             Forgot your password?
           </Link>
-          <button onClick={handleSubmit} className="btn-dark w-full mt-6">
+
+          <button ref={ref} onClick={handleSubmit} className="btn-dark w-full mt-6">
             log in
           </button>
 
-          <span className="mt-5">johnd|m38rmF$</span>
+          <span className="mt-5">Fakestore login authentication (johnd) (m38rmF$)</span>
         </div>
       </div>
     </section>

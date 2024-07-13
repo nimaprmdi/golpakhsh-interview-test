@@ -33,7 +33,7 @@ const ProductMedium = ({ item, isFull = false }: ProductNormalProps) => {
                 onIncrement={() => dispatch(incrementItem(item))}
                 onDecrement={() => dispatch(decrementItem(item))}
                 value={item.quantity}
-                className="absolute right-0 md:static"
+                className="right-0"
               />
             </>
           ) : (

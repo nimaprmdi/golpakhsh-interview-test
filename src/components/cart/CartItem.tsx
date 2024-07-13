@@ -14,13 +14,14 @@ const CartItem = ({ item }: CartItemProps) => {
 
   return item ? (
     <div className="w-full flex flex-wrap  mb-8">
-      <div className="w-full flex relative">
-        <div className="w-2/12">
+      <div className="w-full flex flex-wrap relative ">
+        <div className="w-2/12 min-w-16">
           <img src={item.image} alt={item.title} className="w-full" />
         </div>
 
-        <div className="cart-title  w-max md:w-4/12 h-max md:h-auto flex justify-center items-start md:items-center">
+        <div className="cart-title w-8/12 md:w-4/12 h-max md:h-auto flex flex-col justify-center items-start md:items-center">
           <h3 className="ms-3 md:mt-3">{item.title}</h3>
+          <span className="ps-2 md:ps-0 md:hidden">${item.price}</span>
         </div>
 
         <button
@@ -32,8 +33,8 @@ const CartItem = ({ item }: CartItemProps) => {
 
         {/*  */}
         <div className="w-5/12 flex">
-          <div className="md:w-full h-full flex items-center justify-start ps:8 md:ps-0 md:justify-center text-center w-10/12 absolute md:static right-0">
-            <span className="ps-2 md:ps-0">${item.price}</span>
+          <div className="md:w-full h-full flex items-center justify-start ps:8 md:ps-0 md:justify-center text-center w-10/12 relative md:static right-0">
+            <span className="ps-2 md:ps-0 hidden">${item.price}</span>
           </div>
           <div className="w-full h-full flex items-center justify-center text-center">
             <span>

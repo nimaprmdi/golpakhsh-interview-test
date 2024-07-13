@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 
 interface OrderSummaryProps {
   isWide?: boolean;
   hasButton?: boolean;
+  buttonLink?: string;
 }
 
-const OrderSummary = ({ isWide, hasButton }: OrderSummaryProps) => {
+const OrderSummary = ({ isWide, hasButton, buttonLink }: OrderSummaryProps) => {
   const { priceTotal, itemCounter } = useCart();
   const tax: number = 38.8;
 
@@ -37,7 +39,9 @@ const OrderSummary = ({ isWide, hasButton }: OrderSummaryProps) => {
 
         {hasButton ? (
           <div className="w-full flex justify-end mt-4">
-            <button className="btn-dark w-1/3">Next</button>
+            <Link to={buttonLink || "/"} className="btn-dark text-center w-1/3">
+              Next
+            </Link>
           </div>
         ) : (
           <></>

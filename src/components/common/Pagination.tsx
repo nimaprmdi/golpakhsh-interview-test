@@ -18,7 +18,7 @@ const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCou
     const pagesArray = [];
     for (let i = 1; i <= pageCount; i++) {
       pagesArray.push(
-        <li onClick={() => onPageSelect(i)}>
+        <li key={`pagination--${Math.random() * 5000 * i}`} onClick={() => onPageSelect(i)}>
           <a href="#1" className={pageClass}>
             {i}
           </a>
