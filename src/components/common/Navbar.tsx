@@ -50,7 +50,7 @@ const Navbar = ({ isPrimary = true }: NavbarProps) => {
               </NavLink>
 
               <NavLink
-                className={`w-max  ${(isActive: NavLinkRenderProps) => linkClasss(isActive)}`}
+                className={`w-max ${(isActive: NavLinkRenderProps) => linkClasss(isActive)}`}
                 to={isLoggedIn ? "/cart" : "/login"}
               >
                 <FaUserAlt />

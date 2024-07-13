@@ -77,10 +77,8 @@ const Cards = ({
       setCurrentPage(1);
       setItemsLength && setItemsLength(result.length);
 
-      console.log("asdasd", result);
-
       setItems(() => {
-        console.log("result", result);
+        
         const res = isLimited ? result.slice(0, 3) : result;
         const paged = paginate<IProduct>(res, itemsPerPage, currentPage);
         return paged;
