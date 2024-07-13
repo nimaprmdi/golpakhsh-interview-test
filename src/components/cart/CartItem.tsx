@@ -1,12 +1,12 @@
 import { FaRegTimesCircle } from "react-icons/fa";
 import NumberElement from "../common/NumberElement";
-import { ISelectedItem } from "../../models/cart";
+import { ICartItem } from "../../models/cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { decrementItem, incrementItem, removeFromCart } from "../../store/cart/cartActions";
 
 interface CartItemProps {
-  item: ISelectedItem;
+  item: ICartItem;
 }
 
 const CartItem = ({ item }: CartItemProps) => {

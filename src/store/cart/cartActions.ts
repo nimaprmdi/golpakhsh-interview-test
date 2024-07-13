@@ -3,7 +3,7 @@ import { RootState } from "../rootReducer";
 import { IProduct } from "../../models/products";
 import { toast } from "react-toastify";
 import * as actions from "../cart/cartReducers";
-import { ISelectedItem } from "../../models/cart";
+import { ICartItem } from "../../models/cart";
 
 const incrementItem = (product: IProduct) => (dispatch: Dispatch, getState: () => RootState) => {
   dispatch(actions.INCREMENT_ITEM({ product }));
@@ -20,7 +20,7 @@ const addToWishLists = (product: IProduct) => (dispatch: Dispatch, getState: () 
   toast.success("Action successd");
 };
 
-const removeFromCart = (product: ISelectedItem) => (dispatch: Dispatch, getState: () => RootState) => {
+const removeFromCart = (product: ICartItem) => (dispatch: Dispatch, getState: () => RootState) => {
   dispatch(actions.REMOVE_ITEM({ product }));
   toast.success("Action successd");
 };

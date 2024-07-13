@@ -74,6 +74,8 @@ const LoginPage = () => {
           <button onClick={handleSubmit} className="btn-dark w-full mt-6">
             log in
           </button>
+
+          <span className="mt-5">johnd | m38rmF$</span>
         </div>
       </div>
     </section>

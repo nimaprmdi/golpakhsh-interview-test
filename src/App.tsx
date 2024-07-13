@@ -5,9 +5,8 @@ import SecondaryLayout from "./layouts/SecondaryLayout";
 // Methods
 import { Route, createRoutesFromElements, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchCategories, fetchProducts } from "./store/products/productsActions";
-import { RootState } from "./store/rootReducer";
 import { ToastContainer } from "react-toastify";
 
 // Pages
@@ -26,6 +25,9 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { AppDispatch } from "./store/configureStore";
 import { useProducts } from "./hooks/useProducts";
+// import { AuthLayouts } from "./layouts/AuthLayouts";
+
+// const AuthenticatedComponents = AuthLayouts();
 
 const router = createBrowserRouter(
   createRoutesFromElements(

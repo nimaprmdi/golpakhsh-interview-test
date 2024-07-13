@@ -1,13 +1,13 @@
 import Badge from "./Badge";
 import { FaRegTimesCircle } from "react-icons/fa";
-import { ISelectedItem } from "../../models/cart";
+import { ICartItem } from "../../models/cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { decrementItem, incrementItem, removeFromCart } from "../../store/cart/cartActions";
 import NumberElement from "../common/NumberElement";
 
 interface ProductNormalProps {
-  item: ISelectedItem;
+  item: ICartItem;
   isFull?: boolean;
 }
 
