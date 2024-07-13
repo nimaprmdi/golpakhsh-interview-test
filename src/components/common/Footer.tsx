@@ -33,7 +33,7 @@ const Footer = () => {
             <FaTiktok className="text-2xl" />
           </div>
 
-          <div className="flex items-center mt-10">
+          <div className="flex items-center mt-10 mb-8">
             <span className="me-2">&copy;</span>
             <span>2023 modimal. All Rights Reserved.</span>
           </div>
@@ -42,7 +42,7 @@ const Footer = () => {
         {/* Right Side of the footer */}
         <div className="w-full lg:w-6/12  flex flex-wrap justify-between">
           {/* About Modimal */}
-          <div className="flex">
+          <div className="flex w-full md:w-max mb-8 md:mb-0">
             <div>
               <h5 className="text-white text-xl font-bold mb-6">About Modimal</h5>
 
@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
 
           {/* Help & Support */}
-          <div className="flex ms-6">
+          <div className="flex md:ms-6 w-full md:w-max mb-8 md:mb-0">
             <div>
               <h5 className="text-white text-xl font-bold mb-6">Help & Support</h5>
 
@@ -72,7 +72,7 @@ const Footer = () => {
           </div>
 
           {/* About Modimal */}
-          <div className="flex ms-6">
+          <div className="flex md:ms-6 w-full md:w-max mb-8 md:mb-0">
             <div>
               <h5 className="text-white text-xl font-bold mb-6">Join Up</h5>
 
