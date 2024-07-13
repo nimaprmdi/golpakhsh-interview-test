@@ -52,7 +52,8 @@ const Cards = ({
 
   useEffect(() => {
     if (products.length > 0) {
-      let result = [];
+      let result: IProduct[] = [];
+
       let productsClone = searchedProducts && searchedKey ? [...searchedProducts] : [...products];
 
       // Filter by Category
@@ -74,14 +75,18 @@ const Cards = ({
       }
 
       setCurrentPage(1);
-      setItemsLength && setItemsLength(result.length); // Set For Count parent component
-      setItems(isLimited ? result.slice(0, 3) : result);
-    }
-  }, [products, searchedProducts, searchParams]);
+      setItemsLength && setItemsLength(result.length);
 
-  useEffect(() => {
-    items && setPaginatedData(paginate(items, itemsPerPage, currentPage));
-  }, [items, currentPage, itemsPerPage]);
+      console.log("asdasd", result);
+
+      setItems(() => {
+        console.log("result", result);
+        const res = isLimited ? result.slice(0, 3) : result;
+        const paged = paginate<IProduct>(res, itemsPerPage, currentPage);
+        return paged;
+      });
+    }
+  }, [products, searchedProducts, searchParams, searchedKey]);
 
   return (
     <section className={`w-full flex flex-wrap justify-center ${className || "py-4"}`}>
@@ -101,7 +106,7 @@ const Cards = ({
           )}
 
           <div className="w-full  flex justify-center xl:justify-between flex-wrap gap-6 mb-5">
-            {paginatedData.map((item: IProduct, index: number) => (
+            {items.map((item: IProduct, index: number) => (
               <Card key={`${item.id}--${Math.random() * 1000 * index}`} item={item} />
             ))}
 

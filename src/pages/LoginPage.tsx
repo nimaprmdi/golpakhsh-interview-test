@@ -50,7 +50,11 @@ const LoginPage: React.FC = (): JSX.Element => {
     <section className="w-full flex justify-center pb-12">
       <div className="w-full max-w-1224 flex flex-wrap">
         <div className="w-full md:w-1/2">
-          <img src={loginImage} alt="login-page" className="w-full object-cover object-center  h-72 md:h-auto" />
+          <img
+            src={process.env.PUBLIC_URL + loginImage}
+            alt="login-page"
+            className="w-full object-cover object-center  h-72 md:h-auto"
+          />
         </div>
 
         <div className="w-full md:w-1/2 h-max md:h-full flex items-center justify-center flex-col px-16">

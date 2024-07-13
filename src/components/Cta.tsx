@@ -15,7 +15,7 @@ const Cta = ({
     <section
       style={{
         height: "600px",
-        background: `url(${cta})`,
+        background: `url(${process.env.PUBLIC_URL + cta})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
