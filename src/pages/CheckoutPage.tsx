@@ -1,7 +1,22 @@
-import Form from "../components/checkout/Form";
+import CheckoutForm from "../components/checkout/CheckoutForm";
 import CartItems from "../components/checkout/CartItems";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/rootReducer";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CheckoutPage = () => {
+  const { selectedItems } = useSelector((state: RootState) => state.cart);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedItems.length === 0) {
+      toast.info("You dont have any items in basket please go shopping");
+      navigate("/shop");
+    }
+  }, [selectedItems, navigate]);
+
   return (
     <div className="w-full flex justify-center mt-20">
       <div className="max-w-1224 w-full flex flex-wrap justify-between">
@@ -10,7 +25,7 @@ const CheckoutPage = () => {
         </div>
 
         <div className="w-full lg:w-7/12 px-3 lg:px-0 lg:ps-5 order-2 lg:order-1 mt-8 lg:mt-0">
-          <Form />
+          <CheckoutForm />
         </div>
       </div>
     </div>

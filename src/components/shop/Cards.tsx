@@ -1,10 +1,11 @@
+import Card from "../shop/Card";
+import Pagination from "../common/Pagination";
 import { Link, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/rootReducer";
+import { RootState } from "../../store/rootReducer";
 import { useEffect, useState } from "react";
-import { IProduct } from "../models/products";
-import Card from "./Card";
-import { createSlug } from "../helpers/utils";
+import { IProduct } from "../../models/products";
+import { createSlug, paginate } from "../../helpers/utils";
 
 interface CardsProps {
   catType: "best-seller" | string;
@@ -12,14 +13,43 @@ interface CardsProps {
   title: string;
   link: string;
   hasHeader?: boolean;
+  hasPagination?: boolean;
   isLimited?: boolean;
   setItemsLength?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Cards = ({ title, link, catType, className, hasHeader = true, isLimited = true, setItemsLength }: CardsProps) => {
+const Cards = ({
+  title,
+  link,
+  catType,
+  className,
+  hasHeader = true,
+  isLimited = true,
+  setItemsLength,
+  hasPagination = false,
+}: CardsProps) => {
   const [items, setItems] = useState<IProduct[]>([]);
   const { products, searchedProducts, searchedKey } = useSelector((state: RootState) => state.products);
   const [searchParams] = useSearchParams();
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [paginatedData, setPaginatedData] = useState<IProduct[]>([]);
+
+  const itemsPerPage = 4;
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, pageCount));
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const goToPage = (page: number) => {
+    const pageNumber = Math.max(1, Math.min(page, pageCount));
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     if (products.length > 0) {
@@ -44,10 +74,15 @@ const Cards = ({ title, link, catType, className, hasHeader = true, isLimited = 
         result = productsClone;
       }
 
+      setCurrentPage(1);
       setItemsLength && setItemsLength(result.length); // Set For Count parent component
       setItems(isLimited ? result.slice(0, 3) : result);
     }
   }, [products, searchedProducts, searchParams]);
+
+  useEffect(() => {
+    items && setPaginatedData(paginate(items, itemsPerPage, currentPage));
+  }, [items, currentPage, itemsPerPage]);
 
   return (
     <section className={`w-full flex flex-wrap justify-center ${className || "py-4"}`}>
@@ -66,10 +101,24 @@ const Cards = ({ title, link, catType, className, hasHeader = true, isLimited = 
             <></>
           )}
 
-          <div className="w-full  flex justify-center xl:justify-between flex-wrap gap-6">
-            {items.map(
-              (item: IProduct, index: number) =>
-                items && items.length > 0 && <Card key={`${item.id}--${Math.random() * 1000 * index}`} item={item} />
+          <div className="w-full  flex justify-center xl:justify-between flex-wrap gap-6 mb-5">
+            {paginatedData.map((item: IProduct, index: number) => (
+              <Card key={`${item.id}--${Math.random() * 1000 * index}`} item={item} />
+            ))}
+
+            {/* Pagination */}
+            {hasPagination ? (
+              <div className="w-full flex justify-center">
+                <Pagination
+                  onNextPage={nextPage}
+                  onPrevPage={prevPage}
+                  onPageSelect={goToPage}
+                  currentPage={currentPage}
+                  pageCount={pageCount}
+                />
+              </div>
+            ) : (
+              <></>
             )}
           </div>
         </div>

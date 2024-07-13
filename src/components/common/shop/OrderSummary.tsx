@@ -1,27 +1,33 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/rootReducer";
+
 interface OrderSummaryProps {
   isWide?: boolean;
   hasButton?: boolean;
 }
 
 const OrderSummary = ({ isWide, hasButton }: OrderSummaryProps) => {
+  const { priceTotal, itemCounter } = useSelector((state: RootState) => state.cart);
+  const tax: number = 38.8;
+
   return (
     <div className="w-full flex justify-end">
       <div className="border-t border-gray-400 pt-3" style={{ width: isWide ? "100%" : "500px" }}>
         <div className="sub-total flex justify-between items-center mt-3">
-          <span>Subtotal (3)</span>
-          <span>$485.00</span>
+          <span>Subtotal ({itemCounter})</span>
+          <span>${priceTotal.toFixed(2)}</span>
         </div>
         <div className="tax flex justify-between items-center mt-3">
-          <span>Subtotal (3)</span>
-          <span>$485.00</span>
+          <span>Tax</span>
+          <span>${tax.toFixed(2)}</span>
         </div>
         <div className="shipping flex justify-between items-center mt-3">
-          <span>Subtotal (3)</span>
-          <span>$485.00</span>
+          <span>Shipping</span>
+          <span>Free</span>
         </div>
         <div className="Total Orders: flex justify-between items-center mt-3">
-          <span>Subtotal (3)</span>
-          <span>$485.00</span>
+          <span>Total Orders:</span>
+          <span>${(priceTotal + tax).toFixed(3)}</span>
         </div>
 
         {/* Desc */}

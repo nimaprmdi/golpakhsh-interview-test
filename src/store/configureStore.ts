@@ -1,13 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./rootReducer";
 
-export default configureStore({
+const store = configureStore({
   reducer: rootReducer,
-  // middleware: (getDefaultMiddleware) => [...getDefaultMiddleware()],
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: true,
 });
 
-// export const store = configureStore({
-//   reducer: rootReducer,
-//   middleware: (gDM: any) => gDM().concat(thunkMiddleware),
-// });
+export type AppDispatch = typeof store.dispatch;
+export default store;

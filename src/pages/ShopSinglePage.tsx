@@ -5,19 +5,29 @@ import { IProduct } from "../models/products";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
 import { useParams } from "react-router-dom";
-import { addToCart } from "../store/cart/cartActions";
+import { incrementItem, addToWishLists } from "../store/cart/cartActions";
+import { AppDispatch } from "../store/configureStore";
+import { ISelectedItem } from "../models/cart";
 
 const ShopSinglePage = (): JSX.Element => {
   const [productItem, setProductItem] = useState<IProduct>();
-  const [isLiked, setIsLiked] = useState<boolean>();
-  const { products } = useSelector((state: RootState) => state.products);
+  const [isLiked, setIsLiked] = useState<IProduct>();
+  const {
+    products: { products },
+    cart: { wishLists },
+  } = useSelector((state: RootState) => state);
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const currentProduct = products.filter((item) => item.id.toString() === id!);
     setProductItem(currentProduct[0]);
-  }, [products]);
+  }, [products, id]);
+
+  useEffect(() => {
+    const isLiked = wishLists.filter((item) => item.id?.toString() === id!);
+    setIsLiked(isLiked[0]);
+  }, [wishLists, id]);
 
   return (
     <section className="w-full flex justify-center pb-32 mt-16 lg:mt-32">
@@ -37,10 +47,7 @@ const ShopSinglePage = (): JSX.Element => {
             <h6 className="text-base font-normal mt-6">Price</h6>
             <h6 className="text-lg font-normal">${productItem.price}</h6>
 
-            <button
-              onClick={() => dispatch(addToCart(productItem, 1) as any)}
-              className="btn-dark capitalize w-full mt-6"
-            >
+            <button onClick={() => dispatch(incrementItem(productItem))} className="btn-dark capitalize w-full mt-6">
               Add To Cart
             </button>
 
@@ -53,7 +60,7 @@ const ShopSinglePage = (): JSX.Element => {
 
               <div className="flex items-center">
                 <FaHeart
-                  onClick={() => setIsLiked(!isLiked)}
+                  onClick={() => dispatch(addToWishLists(productItem))}
                   style={{ color: isLiked ? "red" : "black" }}
                   className="me-2"
                 />

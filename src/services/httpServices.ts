@@ -40,9 +40,11 @@ axiosApiInstance.interceptors.response.use(
   }
 );
 
-export default {
+const api = {
   get: axiosApiInstance.get,
   post: axiosApiInstance.post,
   put: axiosApiInstance.put,
   delete: axiosApiInstance.delete,
 };
+
+export default api;

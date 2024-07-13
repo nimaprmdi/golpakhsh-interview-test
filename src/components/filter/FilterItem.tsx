@@ -1,6 +1,7 @@
 import { createSlug } from "../../helpers/utils";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/rootReducer";
+import { useSearchParams } from "react-router-dom";
 
 interface FilterItemProps {
   text: string;

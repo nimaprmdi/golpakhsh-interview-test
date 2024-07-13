@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaPinterest, FaTiktok } from "react-icons/fa";
-import InputElement from "./common/InputElement";
+import InputElement from "../common/InputElement";
 
 const Footer = () => {
   return (
@@ -15,7 +15,7 @@ const Footer = () => {
               placeholder="Enter Your Email Address"
               type="text"
               name="news-letter"
-              className="mb-6 w-full max-w-lg form-input form-input--secondary"
+              className="mb-6 w-full max-w-lg form-input--secondary"
             />
 
             <div className="flex items-center ">

@@ -1,5 +1,6 @@
 // Layouts
 import MainLayout from "./layouts/MainLayout";
+import SecondaryLayout from "./layouts/SecondaryLayout";
 
 // Methods
 import { Route, createRoutesFromElements, RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -7,6 +8,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories, fetchProducts } from "./store/products/productsActions";
 import { RootState } from "./store/rootReducer";
+import { ToastContainer } from "react-toastify";
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -14,13 +16,15 @@ import ShopPage from "./pages/ShopPage";
 import ShopSinglePage from "./pages/ShopSinglePage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
-import SecondaryLayout from "./layouts/SecondaryLayout";
+
 import ShippingPage from "./pages/ShippingPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import LoginPage from "./pages/LoginPage";
 
 // Styles
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import { AppDispatch } from "./store/configureStore";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,26 +38,31 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path="/" element={<SecondaryLayout />}>
-        <Route path="/shop/cart" element={<CartPage />} />
-        <Route path="/shop/checkout" element={<CheckoutPage />} />
-        <Route path="/shop/shipping" element={<ShippingPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/shipping" element={<ShippingPage />} />
       </Route>
     </>
   )
 );
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const productsState = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
     if (!productsState.isLoading) {
-      dispatch(fetchProducts() as any);
-      dispatch(fetchCategories() as any);
+      dispatch(fetchProducts());
+      dispatch(fetchCategories());
     }
   }, []);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer position="top-center" />
+    </>
+  );
 }
 
 export default App;
