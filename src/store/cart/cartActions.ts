@@ -1,9 +1,17 @@
+import * as actions from "../cart/cartReducers";
 import { Dispatch } from "@reduxjs/toolkit";
 import { RootState } from "../rootReducer";
 import { IProduct } from "../../models/products";
 import { toast } from "react-toastify";
-import * as actions from "../cart/cartReducers";
 import { ICartItem } from "../../models/cart";
+
+// Simple Action
+// const incrementItem = (product: IProduct) => {
+//   return {
+//     type: "INCREMENT_ITEM",
+//     payload: product,
+//   };
+// };
 
 const incrementItem = (product: IProduct) => (dispatch: Dispatch, getState: () => RootState) => {
   dispatch(actions.INCREMENT_ITEM({ product }));
@@ -12,7 +20,7 @@ const incrementItem = (product: IProduct) => (dispatch: Dispatch, getState: () =
 
 const decrementItem = (product: IProduct) => (dispatch: Dispatch, getState: () => RootState) => {
   dispatch(actions.DECREMENT_ITEM({ product }));
-  toast.success("Item decremented");
+  toast.success("Item decreased");
 };
 
 const addToWishLists = (product: IProduct) => (dispatch: Dispatch, getState: () => RootState) => {

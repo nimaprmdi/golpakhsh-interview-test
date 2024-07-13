@@ -1,13 +1,13 @@
-interface AuthState {
+interface IAuthState {
   isLoggedIn: boolean;
   loading: boolean;
   lastFetch: number;
   username: string;
 }
 
-interface Auth {
+interface IAuth {
   username: string;
   password: string;
 }
 
-export type { AuthState, Auth };
+export type { IAuthState, IAuth };

@@ -9,7 +9,7 @@ import { AppDispatch } from "../store/configureStore";
 import { useProducts } from "../hooks/useProducts";
 import { useCart } from "../hooks/useCart";
 
-const ShopSinglePage = (): JSX.Element => {
+const ShopSinglePage: React.FC = (): JSX.Element => {
   const [productItem, setProductItem] = useState<IProduct>();
   const [isLiked, setIsLiked] = useState<IProduct>();
 

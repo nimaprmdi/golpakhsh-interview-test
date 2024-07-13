@@ -4,7 +4,7 @@ import Content from "../components/cart/Content";
 import { useEffect } from "react";
 import { useCart } from "../hooks/useCart";
 
-const CartPage = (): JSX.Element => {
+const CartPage: React.FC = (): JSX.Element => {
   const { selectedItems } = useCart();
   useEffect(() => {}, [selectedItems]);
 

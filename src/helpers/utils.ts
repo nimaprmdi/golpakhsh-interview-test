@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { validateProperty } from "./validation/validate";
-import { Errors } from "../models/error";
+import { IErrors } from "../models/error";
 
 /**
  *
@@ -47,8 +47,8 @@ function deepClone<T>(object: T): T {
 const validateInputChange = (
   e: React.ChangeEvent<HTMLInputElement>,
   schema: Joi.ObjectSchema<any>,
-  setErrors: React.Dispatch<React.SetStateAction<Errors>>,
-  errors: Errors
+  setErrors: React.Dispatch<React.SetStateAction<IErrors>>,
+  errors: IErrors
 ) => {
   const errorMsg = validateProperty(e.target, schema);
 

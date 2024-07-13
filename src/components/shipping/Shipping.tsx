@@ -2,8 +2,8 @@ import { cloneDeep } from "lodash";
 import { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { Shipping as ShippingModel } from "../../models/forms";
-import { Errors } from "../../models/error";
+import { IShipping } from "../../models/forms";
+import { IErrors } from "../../models/error";
 import { shippingSchema } from "../../helpers/validation/schemas";
 import { validate, validateProperty } from "../../helpers/validation/validate";
 import { deepClone } from "../../helpers/utils";
@@ -14,11 +14,11 @@ import { resetCart } from "../../store/cart/cartActions";
 import { useCart } from "../../hooks/useCart";
 
 const Shipping = () => {
-  const [errors, setErrors] = useState<Errors>({});
+  const [errors, setErrors] = useState<IErrors>({});
   const dispatch = useDispatch<AppDispatch>();
   const { selectedItems } = useCart();
   const navigate = useNavigate();
-  const [data, setData] = useState<ShippingModel>({
+  const [data, setData] = useState<IShipping>({
     expectedDate: "",
     guaranteed: "",
   });

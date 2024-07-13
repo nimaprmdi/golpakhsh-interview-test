@@ -2,19 +2,19 @@ import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/images/login-image.jpg";
 import InputElement from "../components/common/InputElement";
 import { useRef, useState } from "react";
-import { Auth } from "../models/auth";
+import { IAuth } from "../models/auth";
 import { validate } from "../helpers/validation/validate";
 import { loginSchema } from "../helpers/validation/schemas";
 import { deepClone, validateInputChange } from "../helpers/utils";
-import { Errors } from "../models/error";
+import { IErrors } from "../models/error";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/configureStore";
 import { userLogin } from "../store/auth/authActions";
 
-const LoginPage = () => {
-  const [errors, setErrors] = useState<Errors>({});
-  const [data, setData] = useState<Auth>({
+const LoginPage: React.FC = (): JSX.Element => {
+  const [errors, setErrors] = useState<IErrors>({});
+  const [data, setData] = useState<IAuth>({
     username: "",
     password: "",
   });

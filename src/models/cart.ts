@@ -4,11 +4,11 @@ interface ICartItem extends IProduct {
   quantity: number;
 }
 
-interface CartState {
+interface ICartState {
   selectedItems: ICartItem[];
   wishLists: IProduct[];
   itemCounter: number;
   priceTotal: number;
 }
 
-export type { CartState, ICartItem };
+export type { ICartState, ICartItem };

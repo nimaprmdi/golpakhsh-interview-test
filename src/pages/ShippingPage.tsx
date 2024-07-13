@@ -2,7 +2,7 @@ import React from "react";
 import CheckoutItem from "../components/checkout/CheckoutItems";
 import Shipping from "../components/shipping/Shipping";
 
-const ShippingPage = () => {
+const ShippingPage: React.FC = (): JSX.Element => {
   return (
     <div className="w-full flex justify-center mt-20">
       <div className="max-w-1224 w-full flex flex-wrap justify-between">

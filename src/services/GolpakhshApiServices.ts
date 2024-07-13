@@ -3,7 +3,7 @@ import http from "./httpServices";
 import configureStore from "../store/configureStore";
 import * as productsActions from "../store/products/productsReducers";
 import * as authActions from "../store/auth/authReducers";
-import { Auth } from "../models/auth";
+import { IAuth } from "../models/auth";
 import { NavigateFunction } from "react-router-dom";
 
 const store = configureStore;
@@ -43,7 +43,7 @@ class GolpakhshApiServices {
       });
   };
 
-  readonly handleLogin = async (userData: Auth, navigate: NavigateFunction) => {
+  readonly handleLogin = async (userData: IAuth, navigate: NavigateFunction) => {
     store.dispatch(authActions.SET_LOADING(true));
 
     return await http

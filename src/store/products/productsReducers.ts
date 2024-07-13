@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as models from "../../models/products";
 
-const initialState: models.ProductsState = {
+const initialState: models.IProductState = {
   products: [],
   categories: [],
   isLoading: false,
@@ -15,7 +15,7 @@ const initialState: models.ProductsState = {
 
 const productsSlice = createSlice({
   name: "products",
-  initialState: initialState as models.ProductsState,
+  initialState: initialState as models.IProductState,
   reducers: {
     FETCH_DATA: (state) => {
       state.isLoading = true;
