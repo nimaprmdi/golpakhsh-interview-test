@@ -49,7 +49,7 @@ const ShopPage: React.FC = (): JSX.Element => {
             <FilterSubmition onClearFilterClick={clearFilters} onApplyFilterClick={applyFilters} />
 
             <div className="w-full">
-              <Dropdown data={categories} onChange={handleCategoryChange} />
+              <Dropdown title="Filter by" data={categories} onChange={handleCategoryChange} />
             </div>
           </div>
 
