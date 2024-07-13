@@ -27,10 +27,12 @@ const Hero = ({
     >
       <div className="flex items-end h-full w-full max-w-1224">
         <div className="h-max text-left mb-6 md:mb-24">
-          <h2 className="text-2xl md:text-4xl italic font-gillsansmt mb-2 text-shadow-lg">{title}</h2>
-          <h2 className="text-2xl md:text-4xl italic font-gillsansmt">{subTitle}</h2>
+          <h2 className="text-2xl md:text-4xl italic font-gillsansmt mb-2 text-shadow-lg u-text-has-shadow ms-3 lg:ms-0">
+            {title}
+          </h2>
+          <h2 className="text-2xl md:text-4xl italic font-gillsansmt u-text-has-shadow ms-3 lg:ms-0">{subTitle}</h2>
 
-          <button onClick={() => navigate("/shop")} className="btn-primary mt-10 md:mt-7">
+          <button onClick={() => navigate("/shop")} className="btn-primary mt-10 md:mt-7 ms-3 lg:ms-0">
             {buttonText}
           </button>
         </div>

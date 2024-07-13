@@ -6,7 +6,7 @@ import masonryImage5 from "../assets/images/masonry-images/masonry-(5).jpg";
 
 const Masonry = () => {
   return (
-    <section className="w-full flex justify-center py-20">
+    <section className="w-full flex justify-center py-20 px-3 md:px-0">
       <div className="w-full max-w-1224 ">
         <h4 className="text-3xl font-semibold text-black mb-6">Follow us @modimal</h4>
 

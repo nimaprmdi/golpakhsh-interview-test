@@ -30,9 +30,7 @@ const Cards = ({
   const [items, setItems] = useState<IProduct[]>([]);
   const { products, searchedProducts, searchedKey } = useProducts();
   const [searchParams] = useSearchParams();
-
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [paginatedData, setPaginatedData] = useState<IProduct[]>([]);
 
   const itemsPerPage = 4;
   const pageCount = Math.ceil(items.length / itemsPerPage);
@@ -78,7 +76,6 @@ const Cards = ({
       setItemsLength && setItemsLength(result.length);
 
       setItems(() => {
-        
         const res = isLimited ? result.slice(0, 3) : result;
         const paged = paginate<IProduct>(res, itemsPerPage, currentPage);
         return paged;
@@ -92,7 +89,7 @@ const Cards = ({
         <div className="container-xl lg:container m-auto w-full ">
           {/* Has Header */}
           {hasHeader ? (
-            <div className="w-full flex justify-between items-center mb-6">
+            <div className="w-full flex justify-between items-center mb-6 px-3 md:px-0">
               <h4 className="font-semibold text-3xl">{title}</h4>
 
               <Link to={link} className="text-sm text-black font-normal hover:text-gray-800">

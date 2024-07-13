@@ -27,7 +27,7 @@ import { AppDispatch } from "./store/configureStore";
 import { useProducts } from "./hooks/useProducts";
 import { AuthLayouts } from "./layouts/AuthLayouts";
 
-// HOC authenticate the pages
+//  HOC Authenticate the pages
 const AuthenticatedCartPage = AuthLayouts(CartPage);
 const AuthenticatedCheckoutPage = AuthLayouts(CheckoutPage);
 const AuthenticatedShippingPage = AuthLayouts(ShippingPage);

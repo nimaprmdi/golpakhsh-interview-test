@@ -37,7 +37,7 @@ const Navbar = ({ isPrimary = true }: NavbarProps) => {
 
             <NavLink
               to="/shop"
-              className={`lg:order-2 order-1 w-3/12 max-w-28 lg:w-7/12 flex justify-center items-center text-base ${(
+              className={`lg:order-2 order-1 w-4/12 max-w-28 lg:w-7/12 flex justify-center items-center text-base ${(
                 isActive: NavLinkRenderProps
               ) => linkClasss(isActive)}`}
             >

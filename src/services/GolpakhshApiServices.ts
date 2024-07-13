@@ -17,7 +17,7 @@ class GolpakhshApiServices {
       .then((response) => {
         const res = response.data;
 
-        toast.success("Products fetched successfuly");
+        toast.info("fetched successfully");
         store.dispatch(productsActions.FETCH_DATA_SUCCESSFUL(res));
       })
       .catch((error) => {
@@ -34,7 +34,6 @@ class GolpakhshApiServices {
       .then((response) => {
         const res = response.data;
 
-        toast.success("Categories fetched successfuly");
         store.dispatch(productsActions.FETCH_CATEGORIES_SUCCESSFUL(res));
       })
       .catch((error) => {

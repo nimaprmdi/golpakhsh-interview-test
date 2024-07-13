@@ -58,7 +58,7 @@ const LoginPage: React.FC = (): JSX.Element => {
         </div>
 
         <div className="w-full md:w-1/2 h-max md:h-full flex items-center justify-center flex-col px-16">
-          <h2 className="text-center text-2xl font-bold mb-10">Login</h2>
+          <h2 className="text-center text-2xl font-bold mb-10 mt-6 md:mt-0">Login</h2>
           <InputElement
             onChange={handleInputChange}
             className="w-full mb-2"
