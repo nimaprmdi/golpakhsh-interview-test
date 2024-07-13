@@ -2,19 +2,20 @@ import Badge from "../components/shop/Badge";
 import { FaHeart, FaTruckMoving } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { IProduct } from "../models/products";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/rootReducer";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { incrementItem, addToWishLists } from "../store/cart/cartActions";
 import { AppDispatch } from "../store/configureStore";
+import { useProducts } from "../hooks/useProducts";
+import { useCart } from "../hooks/useCart";
 
 const ShopSinglePage = (): JSX.Element => {
   const [productItem, setProductItem] = useState<IProduct>();
   const [isLiked, setIsLiked] = useState<IProduct>();
-  const {
-    products: { products },
-    cart: { wishLists },
-  } = useSelector((state: RootState) => state);
+
+  const { products } = useProducts();
+  const { wishLists } = useCart();
+
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
