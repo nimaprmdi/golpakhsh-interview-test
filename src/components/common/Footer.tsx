@@ -1,6 +1,5 @@
-import React from "react";
 import { FaFacebook, FaInstagram, FaPinterest, FaTiktok } from "react-icons/fa";
-import InputElement from "../common/InputElement";
+import InputElement from "../form-elements/InputElement";
 
 const Footer = () => {
   return (

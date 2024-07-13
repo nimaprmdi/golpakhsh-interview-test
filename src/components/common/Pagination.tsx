@@ -13,7 +13,7 @@ interface PaginationProps {
 const Pagination = ({ onNextPage, onPrevPage, onPageSelect, currentPage, pageCount }: PaginationProps) => {
   const listClass = (isCurrent: number): string =>
     `flex items-center justify-center px-3 h-8 leading-tight   border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ${
-      currentPage === isCurrent ? "bg-primary text-white" : "bg-white text-gray-500"
+      currentPage === isCurrent ? "bg-white text-gray-500" : "bg-primary text-white"
     }`;
 
   const renderPages = () => {

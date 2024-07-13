@@ -1,4 +1,4 @@
-import InputElement from "../../common/InputElement";
+import InputElement from "../../form-elements/InputElement";
 import { Link, useNavigate } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
 import { useState } from "react";
@@ -34,7 +34,6 @@ const CheckoutForm = () => {
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
     const errorMsg = validate(data, schema);
 
     const handleError = () => {

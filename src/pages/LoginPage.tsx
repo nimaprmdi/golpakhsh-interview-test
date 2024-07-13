@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/images/login-image.jpg";
-import InputElement from "../components/common/InputElement";
+import InputElement from "../components/form-elements/InputElement";
 import { useRef, useState } from "react";
 import { IAuth } from "../models/auth";
 import { validate } from "../helpers/validation/validate";
