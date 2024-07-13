@@ -1,13 +1,13 @@
 import Badge from "./Badge";
 import { FaRegTimesCircle } from "react-icons/fa";
-import { ISelectedItem } from "../../models/cart";
+import { ICartItem } from "../../models/cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { decrementItem, incrementItem, removeFromCart } from "../../store/cart/cartActions";
-import NumberElement from "../common/NumberElement";
+import NumberElement from "../form-elements/NumberElement";
 
 interface ProductNormalProps {
-  item: ISelectedItem;
+  item: ICartItem;
   isFull?: boolean;
 }
 
@@ -23,7 +23,7 @@ const ProductMedium = ({ item, isFull = false }: ProductNormalProps) => {
 
       <div className="flex w-full flex-wrap flex-col justify-start lg:justify-between content-start lg:content-between ps-2">
         <div className="w-4/6 relative h-full flex-col  product-normal-context flex justify-between items-start">
-          <span className="text-base font-bold capitalize pe-8">{item.title}</span>
+          <span className="text-base font-bold capitalize md:pe-8">{item.title}</span>
 
           {isFull ? (
             <>
@@ -33,7 +33,7 @@ const ProductMedium = ({ item, isFull = false }: ProductNormalProps) => {
                 onIncrement={() => dispatch(incrementItem(item))}
                 onDecrement={() => dispatch(decrementItem(item))}
                 value={item.quantity}
-                className="absolute right-0 md:static"
+                className="right-0"
               />
             </>
           ) : (

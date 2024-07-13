@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer"; // Adjust this import path as needed
-import { CartState } from "../models/cart";
+import { ICartState } from "../models/cart";
 
-export const useCart = (): CartState => {
+export const useCart = (): ICartState => {
   return useSelector((state: RootState) => state.cart);
 };

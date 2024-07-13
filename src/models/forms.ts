@@ -1,4 +1,4 @@
-interface Checkout {
+interface ICheckout {
   email: string;
   region: string;
   firstName: string;
@@ -12,9 +12,9 @@ interface Checkout {
   saveInfo: boolean;
 }
 
-interface Shipping {
+interface IShipping {
   expectedDate: string;
   guaranteed: string;
 }
 
-export type { Checkout, Shipping };
+export type { ICheckout, IShipping };

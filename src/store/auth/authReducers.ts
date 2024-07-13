@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as models from "../../models/auth";
 
-const initialState: models.AuthState = {
+const initialState: models.IAuthState = {
   isLoggedIn: false,
   loading: false,
   lastFetch: 0,
@@ -10,7 +10,7 @@ const initialState: models.AuthState = {
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: initialState as models.AuthState,
+  initialState: initialState as models.IAuthState,
   reducers: {
     SET_LOADING: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;

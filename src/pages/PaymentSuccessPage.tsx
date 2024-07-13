@@ -1,6 +1,6 @@
 import { FaRegCheckCircle } from "react-icons/fa";
 
-const PaymentSuccessPage = () => {
+const PaymentSuccessPage: React.FC = (): JSX.Element => {
   return (
     <section className="w-full u-full-height-menu flex items-center justify-center">
       <div className="container flex-col flex justify-center items-center content-center px-4 md:px-0">

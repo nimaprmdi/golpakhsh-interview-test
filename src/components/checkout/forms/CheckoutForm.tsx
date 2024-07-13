@@ -1,19 +1,19 @@
-import InputElement from "../common/InputElement";
+import InputElement from "../../form-elements/InputElement";
 import { Link, useNavigate } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
 import { useState } from "react";
-import { Errors } from "../../models/error";
-import { validate, validateProperty } from "../../helpers/validation/validate";
-import { schema } from "../../helpers/validation/schemas";
-import { deepClone, validateInputChange } from "../../helpers/utils";
-import { Checkout } from "../../models/forms";
+import { IErrors } from "../../../models/error";
+import { validate } from "../../../helpers/validation/validate";
+import { schema } from "../../../helpers/validation/schemas";
+import { deepClone, validateInputChange } from "../../../helpers/utils";
+import { ICheckout } from "../../../models/forms";
 import { toast } from "react-toastify";
 import { cloneDeep } from "lodash";
 
 const CheckoutForm = () => {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState<Errors>({});
-  const [data, setData] = useState<Checkout>({
+  const [errors, setErrors] = useState<IErrors>({});
+  const [data, setData] = useState<ICheckout>({
     firstName: "",
     lastName: "",
     phone: "",
@@ -34,7 +34,6 @@ const CheckoutForm = () => {
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
     const errorMsg = validate(data, schema);
 
     const handleError = () => {

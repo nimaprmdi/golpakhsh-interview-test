@@ -1,6 +1,6 @@
 import ProductMedium from "../shop/ProductMedium";
 import OrderSummary from "../shop/OrderSummary";
-import { ISelectedItem } from "../../models/cart";
+import { ICartItem } from "../../models/cart";
 import { useLocation } from "react-router-dom";
 import { useCart } from "../../hooks/useCart";
 
@@ -17,7 +17,7 @@ const CheckoutItem = (): JSX.Element => {
       {/* Body */}
       <div className="w-full flex flex-wrap mt-10">
         {selectedItems && selectedItems.length > 0 ? (
-          selectedItems.map((item: ISelectedItem, index: number) => (
+          selectedItems.map((item: ICartItem, index: number) => (
             <ProductMedium
               isFull={location.pathname === "/shipping"}
               item={item}

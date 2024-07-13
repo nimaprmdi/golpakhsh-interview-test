@@ -1,5 +1,3 @@
-import { forwardRef } from "react";
-
 const ShippingGuaranteed = () => {
   return (
     <div className="w-full md:w-8/12 mt-2 md:mt-0">

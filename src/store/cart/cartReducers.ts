@@ -1,9 +1,8 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { CartState, ISelectedItem } from "../../models/cart";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ICartState } from "../../models/cart";
 import { IProduct } from "../../models/products";
-import { toast } from "react-toastify";
 
-const initialState: CartState = {
+const initialState: ICartState = {
   selectedItems: [],
   wishLists: [],
   itemCounter: 0,

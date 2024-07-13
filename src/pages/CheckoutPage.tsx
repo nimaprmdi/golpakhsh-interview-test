@@ -1,19 +1,21 @@
-import CheckoutForm from "../components/checkout/CheckoutForm";
+import CheckoutForm from "../components/checkout/forms/CheckoutForm";
 import CheckoutItem from "../components/checkout/CheckoutItems";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCart } from "../hooks/useCart";
 
-const CheckoutPage = () => {
+const CheckoutPage: React.FC = (): JSX.Element => {
   const { selectedItems } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (selectedItems.length === 0) {
+    const handleAction = () => {
       toast.info("You dont have any items in basket please go shopping");
       navigate("/shop");
-    }
+    };
+
+    selectedItems.length === 0 && handleAction();
   }, [selectedItems, navigate]);
 
   return (

@@ -1,5 +1,5 @@
-interface Errors {
+interface IErrors {
   [key: string]: string;
 }
 
-export type { Errors };
+export type { IErrors };

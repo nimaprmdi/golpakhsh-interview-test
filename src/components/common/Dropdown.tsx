@@ -4,20 +4,21 @@ import FilterItem from "../filter/FilterItem";
 
 interface DropdownProps {
   className?: string;
+  title?: string;
   data: string[];
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Dropdown = ({ className, data, onChange }: DropdownProps) => {
+const Dropdown = ({ className, title, data, onChange }: DropdownProps) => {
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
 
   return (
-    <div className={className || "text-black"}>
+    <div className={`text-black mb-4 ${className}`}>
       <div
         onClick={() => setIsListOpen(!isListOpen)}
         className="w-full p-4 shadow  bg-primary text-sm font-medium leading-none text-white flex items-center justify-between cursor-pointer"
       >
-        Sort by
+        {title}
         <div>
           {isListOpen ? (
             <div>
