@@ -25,6 +25,7 @@ import LoginPage from "./pages/LoginPage";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { AppDispatch } from "./store/configureStore";
+import { useProducts } from "./hooks/useProducts";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -48,7 +49,7 @@ const router = createBrowserRouter(
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
-  const productsState = useSelector((state: RootState) => state.products);
+  const productsState = useProducts();
 
   useEffect(() => {
     if (!productsState.isLoading) {

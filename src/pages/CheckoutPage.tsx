@@ -1,13 +1,12 @@
 import CheckoutForm from "../components/checkout/CheckoutForm";
 import CheckoutItem from "../components/checkout/CheckoutItems";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/rootReducer";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useCart } from "../hooks/useCart";
 
 const CheckoutPage = () => {
-  const { selectedItems } = useSelector((state: RootState) => state.cart);
+  const { selectedItems } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {

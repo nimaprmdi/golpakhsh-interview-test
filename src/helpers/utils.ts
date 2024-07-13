@@ -1,3 +1,7 @@
+import Joi from "joi";
+import { validateProperty } from "./validation/validate";
+import { Errors } from "../models/error";
+
 /**
  *
  * Create a slug by give text
@@ -36,4 +40,33 @@ function deepClone<T>(object: T): T {
   return JSON.parse(JSON.stringify(object));
 }
 
-export { createSlug, paginate, deepClone };
+/**
+ *
+ * @param e {React.ChangeEvent<HTMLInputElement>}
+ */
+const validateInputChange = (
+  e: React.ChangeEvent<HTMLInputElement>,
+  schema: Joi.ObjectSchema<any>,
+  setErrors: React.Dispatch<React.SetStateAction<Errors>>,
+  errors: Errors
+) => {
+  const errorMsg = validateProperty(e.target, schema);
+
+  if (errorMsg) {
+    setErrors({ ...errors, [e.target.name]: errorMsg });
+  } else {
+    setErrors((prevState) => {
+      const errorsClone = { ...deepClone(prevState) };
+      delete errorsClone[e.target.name];
+      return { ...errorsClone };
+    });
+  }
+
+  const value =
+    e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
+  return value;
+  // setData({ ...deepClone(data), [e.target.name]: value });
+};
+
+export { createSlug, paginate, deepClone, validateInputChange };

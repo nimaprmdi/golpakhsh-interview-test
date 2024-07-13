@@ -1,13 +1,11 @@
 import Breadcrumb from "../components/cart/Breadcrumb";
 import Header from "../components/cart/Header";
 import Content from "../components/cart/Content";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/rootReducer";
 import { useEffect } from "react";
+import { useCart } from "../hooks/useCart";
 
 const CartPage = (): JSX.Element => {
-  const { selectedItems } = useSelector((state: RootState) => state.cart);
-
+  const { selectedItems } = useCart();
   useEffect(() => {}, [selectedItems]);
 
   return (

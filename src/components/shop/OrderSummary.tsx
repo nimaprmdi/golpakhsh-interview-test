@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/rootReducer";
+import { useCart } from "../../hooks/useCart";
 
 interface OrderSummaryProps {
   isWide?: boolean;
@@ -7,7 +6,7 @@ interface OrderSummaryProps {
 }
 
 const OrderSummary = ({ isWide, hasButton }: OrderSummaryProps) => {
-  const { priceTotal, itemCounter } = useSelector((state: RootState) => state.cart);
+  const { priceTotal, itemCounter } = useCart();
   const tax: number = 38.8;
 
   return (

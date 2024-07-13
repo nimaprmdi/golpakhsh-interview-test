@@ -1,11 +1,10 @@
 import Card from "../shop/Card";
 import Pagination from "../common/Pagination";
 import { Link, useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/rootReducer";
 import { useEffect, useState } from "react";
 import { IProduct } from "../../models/products";
 import { createSlug, paginate } from "../../helpers/utils";
+import { useProducts } from "../../hooks/useProducts";
 
 interface CardsProps {
   catType: "best-seller" | string;
@@ -29,7 +28,7 @@ const Cards = ({
   hasPagination = false,
 }: CardsProps) => {
   const [items, setItems] = useState<IProduct[]>([]);
-  const { products, searchedProducts, searchedKey } = useSelector((state: RootState) => state.products);
+  const { products, searchedProducts, searchedKey } = useProducts();
   const [searchParams] = useSearchParams();
 
   const [currentPage, setCurrentPage] = useState<number>(1);

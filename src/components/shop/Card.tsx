@@ -1,10 +1,9 @@
 import { FaHeart } from "react-icons/fa";
 import { IProduct } from "../../models/products";
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import { AppDispatch } from "../../store/configureStore";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/rootReducer";
+import { useDispatch } from "react-redux";
 import { addToWishLists } from "../../store/cart/cartActions";
 
 interface CardProps {

@@ -3,19 +3,19 @@ import Badge from "../components/shop/Badge";
 import FilterSubmition from "../components/filter/FilterSubmition";
 import SearchInput from "../components/common/SearchInputElement";
 import Dropdown from "../components/common/Dropdown";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/rootReducer";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { IProduct } from "../models/products";
 import { searchProduct, updateSearchedCategories } from "../store/products/productsActions";
 import { useSearchParams } from "react-router-dom";
 import { AppDispatch } from "../store/configureStore";
+import { useProducts } from "../hooks/useProducts";
 
 const ShopPage = (): JSX.Element => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   const [itemsLength, setItemsLength] = useState<number>(0);
-  const { categories, products } = useSelector((state: RootState) => state.products);
+  const { categories, products } = useProducts();
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSerachChange = (event: React.ChangeEvent<HTMLInputElement>) => {
