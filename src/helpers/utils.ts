@@ -25,7 +25,7 @@ const createSlug = (text: string) => {
  * @param pageNumber
  * @returns
  */
-function paginate(array: any[], pageSize: number, pageNumber: number) {
+function paginate<T>(array: T[], pageSize: number, pageNumber: number) {
   return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
 }
 

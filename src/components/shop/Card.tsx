@@ -26,14 +26,14 @@ const Card = ({ item }: CardProps) => {
   }, [wishLists, item.id]);
 
   return (
-    <div style={{ minWidth: "392px" }} className={`w-1/3 max-w-96 relative mb-16`}>
+    <div className={`w-1/3 md:min-w-96 min-w-full max-w-full md:max-w-96 relative mb-16 px-3 md:px-0`}>
       <FaHeart
         onClick={() => handleLike()}
         className="text-gray-300 absolute top-0 right-0 mt-6 me-6 z-50"
         style={{ color: isProductLiked && Object.keys(isProductLiked).length > 0 ? "red" : "black" }}
       />
 
-      <Link to={`/shop/${item.id}`}>
+      <Link className="max-w-full w-full block" to={`/shop/${item.id}`}>
         <img
           src={item.image}
           alt={item.title}

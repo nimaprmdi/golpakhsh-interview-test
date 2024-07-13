@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
 
         {/* Right Side of the footer */}
-        <div className="w-full lg:w-6/12  flex justify-between">
+        <div className="w-full lg:w-6/12  flex flex-wrap justify-between">
           {/* About Modimal */}
           <div className="flex">
             <div>
