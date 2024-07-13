@@ -11,7 +11,7 @@ interface IProduct {
   };
 }
 
-interface IProductsInitialState {
+interface IProductsState {
   products: IProduct[];
   categories: string[] | [];
   searchedProducts: IProduct[];
@@ -23,4 +23,4 @@ interface IProductsInitialState {
   error: string;
 }
 
-export type { IProduct, IProductsInitialState };
+export type { IProduct, IProductsState };

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Errors } from "../../models/error";
 import { validate, validateProperty } from "../../helpers/validation/validate";
 import { schema } from "../../helpers/validation/schemas";
-import { deepClone } from "../../helpers/utils";
+import { deepClone, validateInputChange } from "../../helpers/utils";
 import { Checkout } from "../../models/forms";
 import { toast } from "react-toastify";
 import { cloneDeep } from "lodash";
@@ -28,22 +28,8 @@ const CheckoutForm = () => {
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const errorMsg = validateProperty(e.target, schema);
-
-    if (errorMsg) {
-      setErrors({ ...errors, [e.target.name]: errorMsg });
-    } else {
-      setErrors((prevState) => {
-        const errorsClone = { ...deepClone(prevState) };
-        delete errorsClone[e.target.name];
-        return { ...errorsClone };
-      });
-    }
-
-    const value =
-      e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
-    setData({ ...deepClone(data), [e.target.name]: value });
+    const valueInput = validateInputChange(e, schema, setErrors, errors);
+    setData({ ...deepClone(data), [e.target.name]: valueInput });
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {

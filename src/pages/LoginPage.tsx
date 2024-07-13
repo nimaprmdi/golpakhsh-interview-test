@@ -3,9 +3,9 @@ import loginImage from "../assets/images/login-image.jpg";
 import InputElement from "../components/common/InputElement";
 import { useState } from "react";
 import { Auth } from "../models/auth";
-import { validate, validateProperty } from "../helpers/validation/validate";
+import { validate } from "../helpers/validation/validate";
 import { loginSchema } from "../helpers/validation/schemas";
-import { deepClone } from "../helpers/utils";
+import { deepClone, validateInputChange } from "../helpers/utils";
 import { Errors } from "../models/error";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -22,22 +22,8 @@ const LoginPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const errorMsg = validateProperty(e.target, loginSchema);
-
-    if (errorMsg) {
-      setErrors({ ...errors, [e.target.name]: errorMsg });
-    } else {
-      setErrors((prevState) => {
-        const errorsClone = { ...deepClone(prevState) };
-        delete errorsClone[e.target.name];
-        return { ...errorsClone };
-      });
-    }
-
-    const value =
-      e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : e.target.value;
-
-    setData({ ...deepClone(data), [e.target.name]: value });
+    const valueInput = validateInputChange(e, loginSchema, setErrors, errors);
+    setData({ ...deepClone(data), [e.target.name]: valueInput });
   };
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {

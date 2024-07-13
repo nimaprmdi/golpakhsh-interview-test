@@ -4,9 +4,10 @@ import { RootState } from "../rootReducer";
 import { Dispatch } from "@reduxjs/toolkit";
 import { Auth } from "../../models/auth";
 import { NavigateFunction } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const userLogin = (userData: Auth, navigate: NavigateFunction) => (dispatch: Dispatch, getState: () => RootState) => {
-  const { lastFetch } = getState().auth;
+  const { lastFetch } = useAuth();
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
 
   if (diffInMinutes < 10) return;

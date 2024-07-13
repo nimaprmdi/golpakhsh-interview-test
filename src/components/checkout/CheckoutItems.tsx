@@ -1,12 +1,11 @@
 import ProductMedium from "../shop/ProductMedium";
-import OrderSummary from "../common/shop/OrderSummary";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/rootReducer";
+import OrderSummary from "../shop/OrderSummary";
 import { ISelectedItem } from "../../models/cart";
 import { useLocation } from "react-router-dom";
+import { useCart } from "../../hooks/useCart";
 
-const CartItems = (): JSX.Element => {
-  const { selectedItems } = useSelector((state: RootState) => state.cart);
+const CheckoutItem = (): JSX.Element => {
+  const { selectedItems } = useCart();
   const location = useLocation();
 
   return (
@@ -37,4 +36,4 @@ const CartItems = (): JSX.Element => {
   );
 };
 
-export default CartItems;
+export default CheckoutItem;

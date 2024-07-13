@@ -1,7 +1,5 @@
 import { createSlug } from "../../helpers/utils";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/rootReducer";
-import { useSearchParams } from "react-router-dom";
+import { useProducts } from "../../hooks/useProducts";
 
 interface FilterItemProps {
   text: string;
@@ -9,7 +7,7 @@ interface FilterItemProps {
 }
 
 const FilterItem = ({ text, handleInputChange }: FilterItemProps) => {
-  const { searchedCategories } = useSelector((state: RootState) => state.products);
+  const { searchedCategories } = useProducts();
   const foundResult = searchedCategories.findIndex((item) => item === createSlug(text));
 
   return (

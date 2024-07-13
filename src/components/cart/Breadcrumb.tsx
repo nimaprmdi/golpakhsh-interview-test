@@ -1,10 +1,9 @@
-import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { RootState } from "../../store/rootReducer";
+import { useCart } from "../../hooks/useCart";
 
 const Breadcrumb = () => {
   const navigate = useNavigate();
-  const { selectedItems } = useSelector((state: RootState) => state.cart);
+  const { selectedItems } = useCart();
 
   return (
     <>
