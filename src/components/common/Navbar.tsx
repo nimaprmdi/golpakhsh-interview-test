@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import logo from "../assets/images/Logo.svg";
+import logo from "../../assets/images/Logo.svg";
 import { FaSearch, FaShoppingBag, FaUserAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/rootReducer";
+import { RootState } from "../../store/rootReducer";
 
 interface NavbarProps {
   isPrimary?: boolean;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import FilterItem from "./filter/FilterItem";
+import FilterItem from "../filter/FilterItem";
 
 interface DropdownProps {
   className?: string;

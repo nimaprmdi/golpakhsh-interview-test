@@ -1,5 +1,5 @@
 import { FaHeart } from "react-icons/fa";
-import { IProduct } from "../models/products";
+import { IProduct } from "../../models/products";
 import { Link } from "react-router-dom";
 
 interface CardProps {

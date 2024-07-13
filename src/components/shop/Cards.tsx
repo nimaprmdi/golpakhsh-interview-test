@@ -1,11 +1,11 @@
-import Card from "./Card";
-import Pagination from "./common/Pagination";
+import Card from "../shop/Card";
+import Pagination from "../common/Pagination";
 import { Link, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/rootReducer";
+import { RootState } from "../../store/rootReducer";
 import { useEffect, useState } from "react";
-import { IProduct } from "../models/products";
-import { createSlug, paginate } from "../helpers/utils";
+import { IProduct } from "../../models/products";
+import { createSlug, paginate } from "../../helpers/utils";
 
 interface CardsProps {
   catType: "best-seller" | string;

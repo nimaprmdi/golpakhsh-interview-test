@@ -1,8 +1,8 @@
-import Cards from "../components/Cards";
+import Cards from "../components/shop/Cards";
 import Badge from "../components/shop/Badge";
 import FilterSubmition from "../components/filter/FilterSubmition";
 import SearchInput from "../components/common/SearchInput";
-import Dropdown from "../components/Dropdown";
+import Dropdown from "../components/common/Dropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
 import { useEffect, useState } from "react";

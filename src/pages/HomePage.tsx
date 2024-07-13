@@ -1,5 +1,5 @@
 import Hero from "../components/Hero";
-import Cards from "../components/Cards";
+import Cards from "../components/shop/Cards";
 import Cta from "../components/Cta";
 import Masonry from "../components/Masonry";
 
