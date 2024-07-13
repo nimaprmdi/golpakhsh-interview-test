@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/golpakhsh-interview-test/static/css/main.551bd984.css",
+    "main.js": "/golpakhsh-interview-test/static/js/main.d5f8c226.js",
+    "static/js/453.42160ccb.chunk.js": "/golpakhsh-interview-test/static/js/453.42160ccb.chunk.js",
+    "static/media/hero.png": "/golpakhsh-interview-test/static/media/hero.7ee2b0eba7d25ff6cc37.png",
+    "static/media/masonry-(3).jpg": "/golpakhsh-interview-test/static/media/masonry-(3).a5fc195829b1da2996da.jpg",
+    "static/media/masonry-(5).jpg": "/golpakhsh-interview-test/static/media/masonry-(5).e9e8f274ddfc49cbf1ca.jpg",
+    "static/media/login-image.jpg": "/golpakhsh-interview-test/static/media/login-image.bad48988bbd5df3668ab.jpg",
+    "static/media/cta-bg-1.jpg": "/golpakhsh-interview-test/static/media/cta-bg-1.6d0789f2cab21a06b7ed.jpg",
+    "static/media/masonry-(1).jpg": "/golpakhsh-interview-test/static/media/masonry-(1).1085203bbb87e564bfff.jpg",
+    "static/media/masonry-(2).jpg": "/golpakhsh-interview-test/static/media/masonry-(2).d742d4714c2b8812851f.jpg",
+    "static/media/gillsansmt.woff2": "/golpakhsh-interview-test/static/media/gillsansmt.5dd4bfb04b30f95e2cfe.woff2",
+    "static/media/gillsansmt.woff": "/golpakhsh-interview-test/static/media/gillsansmt.f8ab895be26d11813157.woff",
+    "static/media/Logo.svg": "/golpakhsh-interview-test/static/media/Logo.aaf8bbfdb7aa23fdf0e67879926fc38a.svg",
+    "static/media/masonry-(4).jpg": "/golpakhsh-interview-test/static/media/masonry-(4).d79c4a05b2775acc9c75.jpg",
+    "index.html": "/golpakhsh-interview-test/index.html",
+    "main.551bd984.css.map": "/golpakhsh-interview-test/static/css/main.551bd984.css.map",
+    "main.d5f8c226.js.map": "/golpakhsh-interview-test/static/js/main.d5f8c226.js.map",
+    "453.42160ccb.chunk.js.map": "/golpakhsh-interview-test/static/js/453.42160ccb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.551bd984.css",
+    "static/js/main.d5f8c226.js"
+  ]
+}
