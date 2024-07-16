@@ -1,7 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
 import hero from "../assets/images/hero.png";
+import { useNavigate } from "react-router-dom";
 
-interface HeroProps {
+interface IHeroProps {
   title?: string;
   subTitle?: string;
   buttonText?: string;
@@ -11,7 +11,7 @@ const Hero = ({
   title = "Elegance in simplicity,",
   subTitle = "Earth’s harmony",
   buttonText = "New In",
-}: HeroProps) => {
+}: IHeroProps) => {
   const navigate = useNavigate();
 
   return (

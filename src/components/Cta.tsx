@@ -1,6 +1,6 @@
 import cta from "../assets/images/cta-bg-1.jpg";
 
-interface CtaProps {
+interface ICtaProps {
   className?: string;
   title?: string;
   buttonText?: string;
@@ -10,7 +10,7 @@ const Cta = ({
   className,
   title = "Stylish sustainability in clothing promotes eco-friendly choices for a greater future",
   buttonText = "Sustainability",
-}: CtaProps) => {
+}: ICtaProps) => {
   return (
     <section
       style={{

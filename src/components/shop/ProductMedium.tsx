@@ -4,7 +4,7 @@ import { ICartItem } from "../../models/cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { decrementItem, incrementItem, removeFromCart } from "../../store/cart/cartActions";
-import NumberElement from "../form-elements/NumberElement";
+import NumberElement from "../elements/NumberElement";
 
 interface ProductNormalProps {
   item: ICartItem;

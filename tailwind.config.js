@@ -12,6 +12,15 @@ module.exports = {
       // gridTemplateColumns: {
       //   "70/30": "70% 28%",
       // },
+      animation: {
+        "fade-in": "fade-in 0.3s linear forwards",
+      },
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
       maxWidth: {
         1440: "1440px",
         1224: "1224px",

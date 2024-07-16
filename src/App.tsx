@@ -15,19 +15,24 @@ import ShopPage from "./pages/ShopPage";
 import ShopSinglePage from "./pages/ShopSinglePage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
-
 import ShippingPage from "./pages/ShippingPage";
 import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import LoginPage from "./pages/LoginPage";
 
+// hooks
+import { useProducts } from "./hooks/useProducts";
+
+// layouts
+import { AuthLayouts } from "./layouts/AuthLayouts";
+
+// Types
+import { AppDispatch } from "./store/configureStore";
+
 // Styles
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
-import { AppDispatch } from "./store/configureStore";
-import { useProducts } from "./hooks/useProducts";
-import { AuthLayouts } from "./layouts/AuthLayouts";
 
-//  HOC Authenticate the pages
+// HOC Authenticate the pages
 const AuthenticatedCartPage = AuthLayouts(CartPage);
 const AuthenticatedCheckoutPage = AuthLayouts(CheckoutPage);
 const AuthenticatedShippingPage = AuthLayouts(ShippingPage);
@@ -58,8 +63,12 @@ function App() {
 
   useEffect(() => {
     if (!productsState.isLoading) {
-      dispatch(fetchProducts());
-      dispatch(fetchCategories());
+      const fetchData = async () => {
+        await dispatch(fetchProducts());
+        await dispatch(fetchCategories());
+      };
+
+      fetchData();
     }
   }, []);
 

@@ -6,9 +6,10 @@ import { clearSearch } from "../../store/products/productsActions";
 
 interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  id: string;
 }
 
-const SearchInput = ({ onChange }: InputProps) => {
+const SearchInput: React.FC<InputProps> = ({ onChange, id }: InputProps): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -43,7 +44,7 @@ const SearchInput = ({ onChange }: InputProps) => {
         </div>
         <input
           type="search"
-          id="search"
+          id={`search-${id}`}
           onChange={onChange}
           className="block w-full p-4 ps-10 text-sm text-gray-900 border-b-2 focus:border-black focus:outline-none border-gray-300"
           placeholder="Search"

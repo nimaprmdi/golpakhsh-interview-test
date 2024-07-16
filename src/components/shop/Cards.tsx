@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { IProduct } from "../../models/products";
 import { createSlug, paginate } from "../../helpers/utils";
 import { useProducts } from "../../hooks/useProducts";
+import { usePagination } from "../../hooks/usePagination";
 
 interface CardsProps {
   catType: "best-seller" | string;
@@ -36,18 +37,7 @@ const Cards = ({
   const itemsPerPage = 4;
   const pageCount = Math.ceil(items.length / itemsPerPage);
 
-  const nextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, pageCount));
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
-
-  const goToPage = (page: number) => {
-    const pageNumber = Math.max(1, Math.min(page, pageCount));
-    setCurrentPage(pageNumber);
-  };
+  const { goToPage, nextPage, prevPage } = usePagination(pageCount, setCurrentPage);
 
   useEffect(() => {
     if (products.length > 0) {

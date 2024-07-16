@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import loginImage from "../assets/images/login-image.jpg";
-import InputElement from "../components/form-elements/InputElement";
+import InputElement from "../components/elements/InputElement";
 import { useRef, useState } from "react";
 import { IAuth } from "../models/auth";
 import { validate } from "../helpers/validation/validate";
@@ -47,7 +47,7 @@ const LoginPage: React.FC = (): JSX.Element => {
   };
 
   return (
-    <section className="w-full flex justify-center pb-12">
+    <section className="w-full flex justify-center pb-12 animate-fade-in">
       <div className="w-full max-w-1224 flex flex-wrap">
         <div className="w-full md:w-1/2">
           <img

@@ -1,16 +1,22 @@
-import Navbar from "../components/common/Navbar";
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import Navbar from "../components/common/navbar/Navbar";
 import Footer from "../components/common/Footer";
+import BaseLayout from "./BaseLayouts";
+import { Outlet } from "react-router-dom";
+import { useModal } from "../hooks/useModal";
 
-const MainLayout: React.FC = (): JSX.Element => {
+const MainLayout = (): JSX.Element => {
+  const { isOpen: isModalOpen } = useModal();
+
   return (
-    <>
+    <BaseLayout>
       <Navbar />
-      <Outlet />
-      <Footer />
 
-      <ScrollRestoration />
-    </>
+      <div className={`${isModalOpen && "h-screen max-h-screen overflow-hidden hidden"} animate-fade-in`}>
+        <Outlet />
+      </div>
+
+      <Footer />
+    </BaseLayout>
   );
 };
 

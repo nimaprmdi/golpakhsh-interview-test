@@ -5,7 +5,7 @@ import Masonry from "../components/Masonry";
 
 const HomePage: React.FC = (): JSX.Element => {
   return (
-    <>
+    <section className="animate-fade-in">
       <Hero />
       <Cards link="/shop" title="Best Sellers" catType="best-seller" />
       <Cards link="/shop?category=mens-clothing" title="Men's Clothing" catType="mens-clothing" className="mt-28" />
@@ -17,7 +17,7 @@ const HomePage: React.FC = (): JSX.Element => {
       />
       <Cta className="mt-28" />
       <Masonry />
-    </>
+    </section>
   );
 };
 

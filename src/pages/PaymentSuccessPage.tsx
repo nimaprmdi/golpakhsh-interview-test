@@ -2,7 +2,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 
 const PaymentSuccessPage: React.FC = (): JSX.Element => {
   return (
-    <section className="w-full u-full-height-menu flex items-center justify-center">
+    <section className="w-full u-full-height-menu flex items-center justify-center animate-fade-in">
       <div className="container flex-col flex justify-center items-center content-center px-4 md:px-0">
         <FaRegCheckCircle className="text-green-600 text-5xl" />
 

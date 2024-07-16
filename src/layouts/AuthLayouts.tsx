@@ -11,7 +11,7 @@ export function AuthLayouts<P extends JSX.IntrinsicAttributes>(WrappedComponent:
     useEffect(() => {
       if (!isLoggedIn) {
         toast.info("You are not logged in");
-        navigate("/");
+        navigate("/login");
       }
     }, []);
 

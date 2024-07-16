@@ -4,6 +4,7 @@ import { RootState } from "../rootReducer";
 import { Dispatch } from "@reduxjs/toolkit";
 import { IAuth } from "../../models/auth";
 import { NavigateFunction } from "react-router-dom";
+import * as actions from "./authReducers";
 
 const userLogin = (userData: IAuth, navigate: NavigateFunction) => (dispatch: Dispatch, getState: () => RootState) => {
   const { lastFetch } = getState().auth;
@@ -14,4 +15,8 @@ const userLogin = (userData: IAuth, navigate: NavigateFunction) => (dispatch: Di
   apiService.handleLogin(userData, navigate);
 };
 
-export { userLogin };
+const handleLogout = () => (dispatch: Dispatch, getState: () => RootState) => {
+  dispatch(actions.LOGOUT());
+};
+
+export { userLogin, handleLogout };

@@ -8,7 +8,11 @@ import { useProducts } from "../hooks/useProducts";
 import { useSearch } from "../hooks/useSearch";
 import { useFilter } from "../hooks/useFilter";
 
-const ShopPage: React.FC = (): JSX.Element => {
+interface IShoppageProps {
+  isModal?: boolean;
+}
+
+const ShopPage: React.FC<IShoppageProps> = ({ isModal = false }: IShoppageProps): JSX.Element => {
   const [itemsLength, setItemsLength] = useState<number>(0);
   const { categories, products } = useProducts();
 
@@ -19,9 +23,9 @@ const ShopPage: React.FC = (): JSX.Element => {
   useEffect(() => {}, [categories, products]);
 
   return (
-    <section className="w-full flex justify-center">
+    <section className="w-full flex justify-center animate-fade-in">
       <div className="max-w-1224 w-full text-center">
-        <SearchInput onChange={handleSearchChange} />
+        <SearchInput id={`search-modal-${isModal && "is-modal"}`} onChange={handleSearchChange} />
 
         <h6 className="text-center text-xl py-10">{itemsLength} Items</h6>
 

@@ -29,7 +29,7 @@ const Card = ({ item }: CardProps) => {
     <div className={`w-1/3 md:min-w-96 min-w-full max-w-full md:max-w-96 relative mb-16 px-3 md:px-0`}>
       <FaHeart
         onClick={() => handleLike()}
-        className="text-gray-300 absolute top-0 right-0 mt-6 me-6 z-50"
+        className="text-gray-300 absolute top-0 right-0 mt-6 me-6 z-10"
         style={{ color: isProductLiked && Object.keys(isProductLiked).length > 0 ? "red" : "black" }}
       />
 

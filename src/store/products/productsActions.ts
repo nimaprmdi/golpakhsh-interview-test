@@ -5,13 +5,13 @@ import { RootState } from "../rootReducer";
 import { Dispatch } from "@reduxjs/toolkit";
 import { IProduct } from "../../models/products";
 
-const fetchProducts = () => (dispatch: Dispatch, getState: () => RootState) => {
+const fetchProducts = () => async (dispatch: Dispatch, getState: () => RootState) => {
   const { lastFetch } = getState().products;
   const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
 
   if (diffInMinutes < 10) return;
 
-  apiService.fetchProducts();
+  await apiService.fetchProducts();
 };
 
 const fetchCategories = () => (dispatch: Dispatch, getState: () => RootState) => {

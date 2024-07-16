@@ -30,7 +30,7 @@ const ShopSinglePage: React.FC = (): JSX.Element => {
   }, [wishLists, id]);
 
   return (
-    <section className="w-full flex justify-center pb-32 mt-16 lg:mt-32">
+    <section className="w-full flex justify-center pb-32 mt-16 lg:mt-32 animate-fade-in">
       {productItem ? (
         <div className="max-w-1224 w-full flex flex-wrap justify-between">
           {/* Product Image */}
