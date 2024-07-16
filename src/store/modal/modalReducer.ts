@@ -10,7 +10,7 @@ const modalReducer = createSlice({
   name: "modal",
   initialState: initialState as models.IModalState,
   reducers: {
-    TOGGLE_MODAL: (state, action: PayloadAction<boolean | null>) => {
+    TOGGLE_MODAL: (state: models.IModalState, action: PayloadAction<boolean | null>) => {
       const isClose = action.payload;
 
       state.isOpen = isClose !== null ? isClose : !state.isOpen;

@@ -14,7 +14,6 @@ const toggleModal =
   (isClose: boolean | null = null) =>
   (dispatch: Dispatch, getState: () => RootState) => {
     dispatch(actions.TOGGLE_MODAL(isClose));
-    console.log("toggled");
   };
 
 export { toggleModal };

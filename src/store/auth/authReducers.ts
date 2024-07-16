@@ -12,22 +12,22 @@ const authSlice = createSlice({
   name: "auth",
   initialState: initialState as models.IAuthState,
   reducers: {
-    SET_LOADING: (state, action: PayloadAction<boolean>) => {
+    SET_LOADING: (state: models.IAuthState, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
 
-    LOGIN_SUCCESS: (state, action: PayloadAction<string>) => {
+    LOGIN_SUCCESS: (state: models.IAuthState, action: PayloadAction<string>) => {
       state.isLoggedIn = true;
       state.username = action.payload;
     },
 
-    LOGOUT: (state) => {
+    LOGOUT: (state: models.IAuthState) => {
       state.isLoggedIn = false;
       state.loading = false;
       state.username = "";
     },
 
-    LOGIN_FAILURE: (state) => {
+    LOGIN_FAILURE: (state: models.IAuthState) => {
       state.isLoggedIn = false;
       state.loading = false;
       state.username = "";

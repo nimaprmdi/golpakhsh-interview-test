@@ -5,19 +5,21 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { decrementItem, incrementItem, removeFromCart } from "../../store/cart/cartActions";
 import NumberElement from "../elements/NumberElement";
+import { AiOutlineClose } from "react-icons/ai";
 
 interface ProductNormalProps {
   item: ICartItem;
   isFull?: boolean;
+  hasPrice?: boolean;
 }
 
-const ProductMedium = ({ item, isFull = false }: ProductNormalProps) => {
+const ProductMedium = ({ item, isFull = false, hasPrice = true }: ProductNormalProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div className="w-full flex mb-8 ">
       <div className="min-w-36 product-normal-image relative">
-        <img className="w-36 h-40 object-contain object-top" src={item.image} alt="title" />
+        <img className="w-36 h-40 object-contain object-center" src={item.image} alt="title" />
         <Badge text={item.quantity.toString()} className="absolute top-0 right-0 bg-white m-2" hasClose={false} />
       </div>
 
@@ -42,8 +44,12 @@ const ProductMedium = ({ item, isFull = false }: ProductNormalProps) => {
         </div>
 
         <div className="w-2/6 relative  h-full flex flex-col content-between items-end justify-between">
-          <FaRegTimesCircle onClick={() => dispatch(removeFromCart(item))} className="text-xl" />
-          <span className="text-base font-bold mt-4 lg:mt-0">${item.price}</span>
+          <AiOutlineClose
+            onClick={() => dispatch(removeFromCart(item))}
+            className="text-xl cursor-pointer hover:text-primary"
+          />
+
+          {hasPrice ? <span className="text-base font-bold mt-4 lg:mt-0">${item.price}</span> : <></>}
         </div>
       </div>
     </div>

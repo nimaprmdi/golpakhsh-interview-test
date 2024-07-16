@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import * as models from "../../models/products";
 
 const initialState: models.IProductState = {
@@ -21,35 +21,35 @@ const productsSlice = createSlice({
       state.isLoading = true;
     },
 
-    FETCH_DATA_SUCCESSFUL: (state, action) => {
+    FETCH_DATA_SUCCESSFUL: (state: models.IProductState, action: PayloadAction<models.IProduct[]>) => {
       state.products = action.payload;
       state.isLoading = false;
     },
 
-    FETCH_CATEGORIES_SUCCESSFUL: (state, action) => {
+    FETCH_CATEGORIES_SUCCESSFUL: (state: models.IProductState, action: PayloadAction<string[]>) => {
       state.categories = action.payload;
       state.isLoading = false;
     },
 
-    FETCH_DATA_FAILED: (state, action) => {
+    FETCH_DATA_FAILED: (state: models.IProductState, action: PayloadAction<string>) => {
       state.error = action.payload;
       state.isLoading = false;
     },
 
-    SEARCH_PRODUCT_LIST: (state, action) => {
+    SEARCH_PRODUCT_LIST: (state: models.IProductState, action: PayloadAction<models.IProduct[]>) => {
       state.searchedProducts = action.payload;
     },
 
-    SEARCH_KEY: (state, action) => {
+    SEARCH_KEY: (state: models.IProductState, action: PayloadAction<string>) => {
       state.searchedKey = action.payload;
     },
 
-    UPDATE_SEARCHED_CATEGORIES: (state, action) => {
+    UPDATE_SEARCHED_CATEGORIES: (state: models.IProductState, action: PayloadAction<string[]>) => {
       state.searchedCategories = action.payload;
     },
 
-    DELETE_SEARCHED_CATEGORY: (state, action) => {
-      state.searchedCategories = state.searchedCategories.filter((category) => category !== action.payload);
+    DELETE_SEARCHED_CATEGORY: (state: models.IProductState, action: PayloadAction<string>) => {
+      state.searchedCategories = state.searchedCategories.filter((category) => category !== action.payload[0]);
     },
   },
 });

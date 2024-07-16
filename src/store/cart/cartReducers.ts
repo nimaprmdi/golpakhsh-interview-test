@@ -13,7 +13,7 @@ const cartsSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    INCREMENT_ITEM: (state, action: PayloadAction<{ product: IProduct }>) => {
+    INCREMENT_ITEM: (state: ICartState, action: PayloadAction<{ product: IProduct }>) => {
       const { product } = action.payload;
       const foundProduct = state.selectedItems.findIndex((item) => item.id === product.id);
 
@@ -25,7 +25,7 @@ const cartsSlice = createSlice({
       state.priceTotal += product.price;
     },
 
-    DECREMENT_ITEM: (state, action: PayloadAction<{ product: IProduct }>) => {
+    DECREMENT_ITEM: (state: ICartState, action: PayloadAction<{ product: IProduct }>) => {
       const { product } = action.payload;
       const foundProduct = state.selectedItems.findIndex((item) => item.id === product.id);
       const selectedItem = state.selectedItems[foundProduct];
@@ -39,7 +39,7 @@ const cartsSlice = createSlice({
       foundProduct !== -1 && selectedItem.quantity > 1 && removeProduct();
     },
 
-    REMOVE_ITEM: (state, action: PayloadAction<{ product: IProduct }>) => {
+    REMOVE_ITEM: (state: ICartState, action: PayloadAction<{ product: IProduct }>) => {
       const { product } = action.payload;
       const currentProduct = state.selectedItems.find((item) => item.id === product.id);
 
@@ -53,7 +53,7 @@ const cartsSlice = createSlice({
       currentProduct && removeAction();
     },
 
-    ADD_TO_WISHLIST: (state, action: PayloadAction<{ product: IProduct }>) => {
+    ADD_TO_WISHLIST: (state: ICartState, action: PayloadAction<{ product: IProduct }>) => {
       const { product } = action.payload;
       const foundProduct = state.wishLists.find((item: IProduct) => item.id === product.id);
 
@@ -62,7 +62,7 @@ const cartsSlice = createSlice({
         : state.wishLists.push(product);
     },
 
-    RESET_CART: (state) => {
+    RESET_CART: (state: ICartState) => {
       state.selectedItems = [];
       state.itemCounter = 0;
       state.priceTotal = 0;
