@@ -13,7 +13,7 @@ const modalReducer = createSlice({
     TOGGLE_MODAL: (state, action: PayloadAction<boolean | null>) => {
       const isClose = action.payload;
 
-      state.isOpen = isClose !== null && (isClose === true || isClose === false) ? isClose : !state.isOpen;
+      state.isOpen = isClose !== null ? isClose : !state.isOpen;
     },
   },
 });

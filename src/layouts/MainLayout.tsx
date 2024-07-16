@@ -11,7 +11,9 @@ const MainLayout = (): JSX.Element => {
     <BaseLayout>
       <Navbar />
 
-      <div className={`${isModalOpen && "h-screen max-h-screen overflow-hidden hidden"} animate-fade-in`}>
+      <div
+        className={`${isModalOpen ? "h-screen max-h-screen overflow-hidden hidden" : ""} animate-fade-in relative z-50`}
+      >
         <Outlet />
       </div>
 

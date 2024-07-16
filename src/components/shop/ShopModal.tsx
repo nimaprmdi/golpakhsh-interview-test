@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { toggleModal } from "../../store/modal/modalActions";
-import Navbar from "../common/navbar/Navbar";
 import { clearSearch } from "../../store/products/productsActions";
+
 const ShopModal = () => {
   const { isOpen } = useModal();
   const location = useLocation();

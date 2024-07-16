@@ -47,7 +47,7 @@ const NavLinks = () => {
 
       <div className="order-3 w-2/12 flex justify-end gap-8 items-center ">
         <button
-          onClick={() => dispatch(toggleModal())}
+          onClick={() => dispatch(toggleModal(null))}
           className={`w-max  ${(isActive: NavLinkRenderProps) => linkClasss(isActive)}`}
         >
           {isOpen ? <AiOutlineClose className="text-2xl" /> : <FaSearch />}

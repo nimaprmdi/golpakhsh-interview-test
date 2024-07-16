@@ -1,12 +1,12 @@
-import InputElement from "../../elements/InputElement";
+import InputElement from "../elements/InputElement";
 import { Link, useNavigate } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa";
 import { useState } from "react";
-import { IErrors } from "../../../models/error";
-import { validate } from "../../../helpers/validation/validate";
-import { schema } from "../../../helpers/validation/schemas";
-import { deepClone, validateInputChange } from "../../../helpers/utils";
-import { ICheckout } from "../../../models/forms";
+import { IErrors } from "../../models/error";
+import { validate } from "../../helpers/validation/validate";
+import { schema } from "../../helpers/validation/schemas";
+import { deepClone, validateInputChange } from "../../helpers/utils";
+import { ICheckout } from "../../models/forms";
 import { toast } from "react-toastify";
 import { cloneDeep } from "lodash";
 

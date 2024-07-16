@@ -5,6 +5,7 @@ const validate = <T>(data: T, schema: Joi.ObjectSchema<any>) => {
   const { error } = schema.validate(data, options);
 
   if (!error) return null;
+
   const errors: any = {};
   for (let item of error.details) {
     errors[item.path[0]] = item.message;

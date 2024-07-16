@@ -52,15 +52,13 @@ const validateInputChange = (
 ) => {
   const errorMsg = validateProperty(e.target, schema);
 
-  if (errorMsg) {
-    setErrors({ ...errors, [e.target.name]: errorMsg });
-  } else {
-    setErrors((prevState) => {
-      const errorsClone = { ...deepClone(prevState) };
-      delete errorsClone[e.target.name];
-      return { ...errorsClone };
-    });
-  }
+  errorMsg
+    ? setErrors({ ...errors, [e.target.name]: errorMsg })
+    : setErrors((prevState) => {
+        const errorsClone = { ...deepClone(prevState) };
+        delete errorsClone[e.target.name];
+        return { ...errorsClone };
+      });
 
   const value =
     e.target instanceof HTMLInputElement && e.target.type === "checkbox" ? e.target.checked : e.target.value;

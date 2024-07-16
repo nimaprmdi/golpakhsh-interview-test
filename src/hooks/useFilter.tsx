@@ -13,29 +13,29 @@ export const useFilter = (initialProducts: IProduct[]) => {
   });
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleCategoryChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target;
+  const handleCategoryChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, checked } = event.target;
 
-    setSelectedCategories((prevState) => {
-      let newSelectedCategory;
+      setSelectedCategories((prevState) => {
+        let newSelectedCategory;
 
-      if (checked && !prevState.includes(name)) {
-        newSelectedCategory = [...prevState, name];
-      } else {
-        newSelectedCategory = prevState.filter((category) => category !== name);
-      }
+        checked && !prevState.includes(name)
+          ? (newSelectedCategory = [...prevState, name])
+          : (newSelectedCategory = prevState.filter((category) => category !== name));
 
-      dispatch(updateSearchedCategories(newSelectedCategory));
-      return newSelectedCategory;
-    });
-  }, []);
+        dispatch(updateSearchedCategories(newSelectedCategory));
+        return newSelectedCategory;
+      });
+    },
+    [dispatch]
+  );
 
   const applyFilters = useCallback(() => {
-    if (selectedCategories.length === 0) {
-      searchParams.delete("category");
-    } else {
-      searchParams.set("category", selectedCategories.join(","));
-    }
+    selectedCategories.length === 0
+      ? searchParams.delete("category")
+      : searchParams.set("category", selectedCategories.join(","));
+
     setSearchParams(searchParams);
   }, [selectedCategories, searchParams, setSearchParams]);
 

@@ -1,4 +1,4 @@
-import CheckoutForm from "../components/checkout/forms/CheckoutForm";
+import CheckoutForm from "../components/forms/CheckoutForm";
 import CheckoutItem from "../components/checkout/CheckoutItems";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";

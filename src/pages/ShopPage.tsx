@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { useProducts } from "../hooks/useProducts";
 import { useSearch } from "../hooks/useSearch";
 import { useFilter } from "../hooks/useFilter";
+import FilterBadges from "../components/shop/FilterBadges";
 
 interface IShoppageProps {
   isModal?: boolean;
@@ -34,27 +35,9 @@ const ShopPage: React.FC<IShoppageProps> = ({ isModal = false }: IShoppageProps)
           {/* The Filters */}
           <div className="w-full xl:w-4/12 h-full md:pe-2 px-3 md:px-0">
             <h4 className="text-left font-semibold text-3xl text-black mb-4">Filters</h4>
-            {/* Badges */}
-            <div className="badges flex flex-wrap gap-3">
-              {selectedCategories && selectedCategories.length > 0 ? (
-                selectedCategories.map((category: string, index: number) => (
-                  <Badge
-                    onClose={() => deleteCategory(category)}
-                    key={`${category}--${Math.random() * 65482 * index}`}
-                    text={category}
-                  />
-                ))
-              ) : (
-                <></>
-              )}
-            </div>
-
-            {/* Filter Submition */}
+            <FilterBadges selectedCategories={selectedCategories} />
             <FilterSubmition onClearFilterClick={clearFilters} onApplyFilterClick={applyFilters} />
-
-            <div className="w-full">
-              <Dropdown title="Filter by" data={categories} onChange={handleCategoryChange} />
-            </div>
+            <Dropdown title="Filter by" data={categories} onChange={handleCategoryChange} />
           </div>
 
           {/* The Content */}

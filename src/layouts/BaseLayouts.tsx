@@ -1,4 +1,3 @@
-// BaseLayout.tsx
 import React from "react";
 import ShopModal from "../components/shop/ShopModal";
 import { ScrollRestoration } from "react-router-dom";

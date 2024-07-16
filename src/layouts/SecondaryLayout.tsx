@@ -9,7 +9,9 @@ const SecondaryLayout: React.FC = (): JSX.Element => {
   return (
     <BaseLayout>
       <Navbar isPrimary={false} />
-      <div className={`${isModalOpen && "h-screen max-h-screen overflow-hidden hidden"} animate-fade-in`}>
+      <div
+        className={`${isModalOpen ? "h-screen max-h-screen overflow-hidden hidden" : ""} animate-fade-in relative z-50`}
+      >
         <Outlet />
       </div>
     </BaseLayout>
