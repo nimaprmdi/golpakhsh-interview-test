@@ -1,4 +1,4 @@
-# GPA TEST - [Demo](https://nimaprmdi.github.io/vision-dashboard/)
+# GPA TEST - [Demo](https://golpakhsh-interview-test.vercel.app/)
 
 Golpakhsh TEST interview shop is a SHOP app using TypeScript, React, Axios and other related technologies.
 
@@ -14,7 +14,7 @@ See a working example at [nimaprmdi.github.io/golpakhsh-interview-test/](https:/
 
 ## installation
 
-1.  Clone the project into wanted destination location using `git clone https://github.com/nimaprmdi/Vision-Dashboard.git`
+1.  Clone the project into wanted destination location using `git clone https://github.com/nimaprmdi/golpakhsh-interview-test.git`
 2.  Run command `npm install`
 3.  Run command `npm build`
 4.  You Will find production build in <b>build</b> folder
