@@ -1,11 +1,11 @@
 import Badge from "./Badge";
-import { deleteCategory } from "../../store/products/productsActions";
 
 interface IFilterBadges {
   selectedCategories: string[];
+  deleteCategory: (category: string) => void;
 }
 
-const FilterBadges = ({ selectedCategories }: IFilterBadges) => {
+const FilterBadges = ({ selectedCategories, deleteCategory }: IFilterBadges) => {
   return (
     <div className="badges flex flex-wrap gap-3">
       {selectedCategories && selectedCategories.length > 0 ? (
