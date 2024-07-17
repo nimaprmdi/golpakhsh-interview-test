@@ -1,13 +1,12 @@
 import Cards from "../components/shop/Cards";
-import Badge from "../components/shop/Badge";
 import FilterSubmition from "../components/filter/FilterSubmition";
 import SearchInput from "../components/common/SearchInputElement";
 import Dropdown from "../components/common/Dropdown";
+import FilterBadges from "../components/shop/FilterBadges";
 import React, { useEffect, useState } from "react";
 import { useProducts } from "../hooks/useProducts";
 import { useSearch } from "../hooks/useSearch";
 import { useFilter } from "../hooks/useFilter";
-import FilterBadges from "../components/shop/FilterBadges";
 
 interface IShoppageProps {
   isModal?: boolean;
