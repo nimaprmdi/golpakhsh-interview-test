@@ -1,9 +1,9 @@
 import { FaRegTimesCircle } from "react-icons/fa";
-import NumberElement from "../elements/NumberElement";
 import { ICartItem } from "../../models/cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { decrementItem, incrementItem, removeFromCart } from "../../store/cart/cartActions";
+import NumberElement from "../elements/NumberElement";
 
 interface CartItemProps {
   item: ICartItem;

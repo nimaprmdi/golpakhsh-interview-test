@@ -1,5 +1,4 @@
 import Badge from "./Badge";
-import { FaRegTimesCircle } from "react-icons/fa";
 import { ICartItem } from "../../models/cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
@@ -15,6 +14,7 @@ interface ProductNormalProps {
 
 const ProductMedium = ({ item, isFull = false, hasPrice = true }: ProductNormalProps) => {
   const dispatch = useDispatch<AppDispatch>();
+  console.log("@here");
 
   return (
     <div className="w-full flex mb-8 ">

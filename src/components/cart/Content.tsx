@@ -5,7 +5,6 @@ import NumberElement from "../elements/NumberElement";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
 import { decrementItem, incrementItem } from "../../store/cart/cartActions";
-import { useCart } from "../../hooks/useCart";
 
 interface ContentProps {
   cartItems: ICartItem[];
@@ -13,7 +12,6 @@ interface ContentProps {
 
 const Content = ({ cartItems }: ContentProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { priceTotal } = useCart();
 
   return (
     <div className="w-full pt-8">
