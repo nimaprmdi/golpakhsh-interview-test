@@ -35,7 +35,7 @@ const ShopPage: React.FC<IShoppageProps> = ({ isModal = false }: IShoppageProps)
           {/* The Filters */}
           <div className="w-full xl:w-4/12 h-full md:pe-2 px-3 md:px-0">
             <h4 className="text-left font-semibold text-3xl text-black mb-4">Filters</h4>
-            <FilterBadges selectedCategories={selectedCategories} />
+            <FilterBadges deleteCategory={deleteCategory} selectedCategories={selectedCategories} />
             <FilterSubmition onClearFilterClick={clearFilters} onApplyFilterClick={applyFilters} />
             <Dropdown title="Filter by" data={categories} onChange={handleCategoryChange} />
           </div>
