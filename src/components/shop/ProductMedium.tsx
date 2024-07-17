@@ -1,5 +1,4 @@
 import Badge from "./Badge";
-import { FaRegTimesCircle } from "react-icons/fa";
 import { ICartItem } from "../../models/cart";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/configureStore";
