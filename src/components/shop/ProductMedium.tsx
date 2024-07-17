@@ -14,6 +14,7 @@ interface ProductNormalProps {
 
 const ProductMedium = ({ item, isFull = false, hasPrice = true }: ProductNormalProps) => {
   const dispatch = useDispatch<AppDispatch>();
+  console.log("@here");
 
   return (
     <div className="w-full flex mb-8 ">
