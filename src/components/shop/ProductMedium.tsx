@@ -27,7 +27,7 @@ const ProductMedium = ({ item, isFull = false, hasPrice = true }: ProductNormalP
         <div className="w-4/6 relative h-full flex-col  product-normal-context flex justify-between items-start">
           <span className="text-base font-bold capitalize md:pe-8">{item.title}</span>
 
-          {isFull ? (
+          {isFull && hasPrice ? (
             <>
               <span>Category: {item.category}</span>
 

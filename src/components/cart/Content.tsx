@@ -17,10 +17,15 @@ const Content = ({ cartItems }: ContentProps) => {
     <div className="w-full pt-8">
       <div className="w-full flex flex-wrap">
         {/*  Left */}
-        <div className="flex flex-wrap card-items w-7/12  pb-8">
+        <div className="flex flex-wrap card-items w-full md:w-7/12  pb-8">
           {cartItems.length > 0 ? (
             cartItems.map((item: ICartItem, index: number) => (
-              <ProductMedium hasPrice={false} item={item} key={`${item.id}--${Math.random() * 1000 * index}`} />
+              <ProductMedium
+                isFull={false}
+                hasPrice={false}
+                item={item}
+                key={`${item.id}--${Math.random() * 1000 * index}`}
+              />
             ))
           ) : (
             <div className="w-full flex justify-center pb-8">No Items In Cart</div>
@@ -28,7 +33,7 @@ const Content = ({ cartItems }: ContentProps) => {
         </div>
 
         {/*  Right */}
-        <div className="w-5/12 flex flex-wrap items-start content-start">
+        <div className="w-full md:w-5/12 flex flex-wrap items-start content-start">
           {cartItems.length > 0 ? (
             cartItems.map((item: ICartItem, index: number) => (
               <div
