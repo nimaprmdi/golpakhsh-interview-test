@@ -28,7 +28,7 @@ const Content = ({ cartItems }: ContentProps) => {
               />
             ))
           ) : (
-            <div className="w-full flex justify-center pb-8">No Items In Cart</div>
+            <div className="w-full flex justify-end pb-8">No Items In Cart</div>
           )}
         </div>
 
